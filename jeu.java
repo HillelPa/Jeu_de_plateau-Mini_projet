@@ -3,7 +3,8 @@ import java.util.Scanner;
 public class jeu{
 	public static void main(String[] args) {
 		System.out.println("NOM DU JEU");
-		for
+		perso Perso1 = choix(1);
+		perso Perso2 = choix(2);
 	}
 public static perso choix(int j){ // j : joueur 
 Scanner sc = new Scanner(System.in);
@@ -14,6 +15,6 @@ Scanner sc = new Scanner(System.in);
 		System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
 		int numeroPerso = sc.nextInt();
 	}
-	return new perso(numeroPerso);
+	return new perso(numeroPerso, j);
 }
 }
