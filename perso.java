@@ -47,7 +47,7 @@ public Perso(int a, int j){ //a : personnage choisi, j = joueur (1 ou 2)
 }
 
 //deplacement
-public void move(personnage J){ // personnage est un type et J est alors le joueur actuellement en train de jouer son tour
+public void move(personnage J){ // personnage est un type et J et alors le joueur actuellement en train de jouer son tour
         Scanner sc = new Scanner(System.in);
         
         if (posx.J<2){
