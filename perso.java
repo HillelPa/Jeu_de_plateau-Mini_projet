@@ -1,21 +1,21 @@
 import java.util.Scanner;
 
-public class Perso{
+public class perso{
 
-	private String nom;
+	public String nom;
 	public int pv; 					//points de vie
-	private int type; 				//retrouver chaque perso plus facilement
-	public int posx; 				// la position du joueur pos[0] = sur x et pos[1] = sur y
-	public int posy;
+	public int type; 				//retrouver chaque perso plus facilement
+	public int posx; 				// la position du joueur sur x 
+	public int posy;				// la position du joueur sur y 
 
 	//constructeur
-	public Perso(int a, int j){		//a : personnage choisi, j = joueur (1 ou 2)
+	public perso(int a, int j){		//a : personnage choisi, j = joueur (1 ou 2)
 		this.posx = 4;
 		
 		if(j == 1){
 					posy = 0; 		// centre haut du jeu
 				}else{
-					posy = 8;
+					posy = 8;		// centre bas du jeu
 				}
 		
 		switch(a){
@@ -23,7 +23,6 @@ public class Perso{
 			this.nom = "Archer";
 			this.pv = 150;
 			this.type = 1;
-			
 			break;
 			
 			case 2 :
@@ -45,6 +44,8 @@ public class Perso{
 			break;
 		}
 	}
+	
+	/*   POUR L'INSTANT ON MET TOUT EN PUBLIC PAS BESOIN DE SET ni de GET
 	//Getteurs
 	public String getNom(){
         return  this.nom;
@@ -52,114 +53,49 @@ public class Perso{
 	public int getPv() {
 		return this.pv;
 	}
-	// Déplacements
-	public void move(personnage J){ // personnage est un type et J est alors le joueur actuellement en train de jouer son tour
-        Scanner sc = new Scanner(System.in);
-        
-        if (posx.J<2){
-            if (posy.J<2){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("D pour aller à droite");
-                System.out.println("C pour aller en bas à droite");
-                System.out.println("X pour descendre");
-                System.out.println("S pour ne pas bouger");
-            }if (pos.J>7){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("D pour aller à droite");
-                System.out.println("E pour aller en haut à droite");
-                System.out.println("Z pour monter");
-                System.out.println("S pour ne pas bouger");
-            }else{
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("D pour aller à droite");
-                System.out.println("C pour aller en bas à droite");
-                System.out.println("X pour descendre");
-                System.out.println("E pour aller en haut à droite");
-                System.out.println("Z pour monter");
-                System.out.println("S pour ne pas bouger");
-            }
-        }if (posx.J>7){
-            if (posy.J<2){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("W pour aller en bas à gauche");
-                System.out.println("X pour descendre");
-                System.out.println("S pour ne pas bouger");
-            }if (posy.J>7){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("A pour aller en haut à gauchez");
-                System.out.println("Z pour monter");
-                System.out.println("S pour ne pas bouger");
-            }else{
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("Z pour aller en haut");
-                System.out.println("A pour aller en haut à gauche");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("W pour aller en bas à gauche");
-                System.out.println("X pour descendre");
-        }else{
-            if (posy.J<2){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("W pour aller en bas à gauche");
-                System.out.println("X pour descendre");
-                System.out.println("C pour aller en bas à droite");
-                System.out.println("D pour aller à droite");
-                System.out.println("S pour ne pas bouger");
-            }
-            if (posy.J>7e){
-                System.out.println("Ou voulez-vous aller ?");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("A pour aller en haut à gauche");
-                System.out.println("Z pour monter");
-                System.out.println("E pour aller en haut à droite");
-                System.out.println("D pour aller à droite");
-                System.out.println("S pour ne pas bouger");
-            }else{
-                System.out.println("A pour aller en haut à gauche");
-                System.out.println("Z pour monter");
-                System.out.println("E pour aller en haut à droite");
-                System.out.println("D pour aller à droite");
-                System.out.println("C pour aller en bas à droite");
-                System.out.println("X pour descendre");
-                System.out.println("W pour aller en bas à gauche");
-                System.out.println("Q pour aller à gauche");
-                System.out.println("S pour ne pas bouger");
-                
+	* */     
+	
+	//description
+	public String toString(){
+		return this.nom+", vous avez "+this.pv+" points de vie";
+		}
 
-        String mouv = T;//initialisation différente du pavé de déplacement
-        String mouv = sc.nextLine();
-        While ((mouv!='A')||(mouv!='Z')||(mouv!='E')||(mouv!='D')||(mouv!='C')||(mouv!='X')||(mouv!='W')||(mouv!='Q')||(mouv!='S')){
+	//Déplacements 
+	public void move(){
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Où voulez-vous aller ?");
+		System.out.println();
+			if(this.posy > 0){
+			System.out.println("z pour monter");
+			}
+			if(this.posx > 0){
+			System.out.println("q pour aller à gauche");
+			}	
+			if(this.posy<8){
+			System.out.println("s pour descendre");
+			}
+			if(this.posx<8){
+			System.out.println("d pour aller à droite");
+			}
+		
+		String mouv = sc.nextLine();
+
+        while(!mouv.equals("z") && mouv.equals("q") && mouv.equals("s") && mouv.equals("d") ){
             System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre :");
-            String mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???
+            mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???
         }
-        if(mouv == "A"){
-            this.posy = this.posy-1;
-            this.posx = this.posx-1;
-        }
-        if(mouv == "Z"){
+        if(mouv.equals("z")){
             this.posy = this.posy-1;
         }
-        if(mouv == "E"){
-            this.posy = this.posy-1;
+        if(mouv.equals("d")){
             this.posx = this.posx+1;
         }
-        if(mouv == "D"){
-            this.posx = this.posx+1;
-        }
-        if(mouv == "C"){
+        if(mouv.equals("s")){
             this.posy = this.posy+1;
-            this.posx = this.posx+1;
         }
-        if(mouv == "X"){
-            this.posx = this.posy+1;
-        }
-        if(mouv == "W"){
-            this.posy = this.posy+1;
+        if(mouv.equals("q")){
             this.posx = this.posx-1;
         }
-        if(mouv == "Q"){
-            this.posx = this.posx-1;
-        }
+}
 }
