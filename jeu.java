@@ -12,8 +12,27 @@ public class jeu{
 		String [][] plat = init();
 		maj(plat, Perso1, Perso2);
 		affichage(plat);
+		
+		System.out.println("Joueur 1, a vous de jouer !");
+		deplacement(plat, Perso1, Perso2, 1);
+		
 	}
-	
+
+//deplacement
+public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
+	switch (j){
+		case 1 :
+		Perso1.move();
+		break;
+		
+		case 2 :
+		Perso2.move();
+		break;
+	}
+maj(plat, Perso1, Perso2);
+affichage(plat);
+}
+
 //création du plateau
 public static String [][] init(){
 	String [][] plateau = new String [9][9];
