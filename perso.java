@@ -121,29 +121,28 @@ public class perso{
 	}	
 	 
 	//attaque
-public void attaque(perso B){
-	Scanner sc = new Scanner(System.in);
-	
-	System.out.println("Vous décidez d'attaquer ! quelle attaque voulez vous utiliser ?");
-	System.out.println(this.A1.toString()+" tapez 1");
-	System.out.println(this.A2.toString()+" tapez 2");
-	int at = sc.nextInt();
-	int d = this.distance(B);
-	switch (at){
-		case 1 : 
-	if(d > 3){
-		B.pv(this.A1.Adist);
-	}else{
-		B.pv(this.A1.Acac);
+	public void attaque(perso B){
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.println("Vous décidez d'attaquer ! quelle attaque voulez vous utiliser ?");
+		System.out.println(this.A1.toString()+" tapez 1");
+		System.out.println(this.A2.toString()+" tapez 2");
+		int at = sc.nextInt();
+		int d = this.distance(B);
+		switch (at){
+			case 1 : 
+			if(d > 3){
+				B.pv(this.A1.Adist);
+			}else{
+				B.pv(this.A1.Acac);
+			}
+			break;
+				case 2 : 
+				if(d > 3){
+				B.pv(this.A2.Adist);
+			}else{
+				B.pv(this.A2.Acac);
+			}
+		}
 	}
-	break;
-		case 2 : 
-		if(d > 3){
-		B.pv(this.A2.Adist);
-	}else{
-		B.pv(this.A2.Acac);
-	}
-	}
-}
-	
 }
