@@ -1,5 +1,7 @@
 import java.util.Scanner;
 
+//import java.util.Scanner;
+
 public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -8,6 +10,7 @@ public class jeu{
 				pause();
 				
 				perso[] Perso = new perso [2];
+				
 				Perso[0] = choix(1);
 				System.out.println("Vous avez choisi : ");
 				System.out.println(Perso[0].toString());
@@ -86,11 +89,11 @@ public class jeu{
 		public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
 			switch (j){
 				case 1 :
-				Perso1.move();
+				Perso1.move(Perso2);
 				break;
 				
 				case 2 :
-				Perso2.move();
+				Perso2.move(Perso2);
 				break;
 			}
 		maj(plat, Perso1, Perso2);
