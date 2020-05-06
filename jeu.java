@@ -2,21 +2,85 @@ import java.util.Scanner;
 
 public class jeu{
 	public static void main(String[] args) {
+Scanner sc = new Scanner(System.in);
+
 		System.out.println("NOM DU JEU");
-		perso Perso1 = choix(1);
+		pause();
+		
+		perso[] Perso = new perso [2];
+		Perso[0] = choix(1);
 		System.out.println("Vous avez choisi : ");
-		//System.out.println(Perso1.toString);
-		perso Perso2 = choix(2);
+		System.out.println(Perso[0].toString());
+		System.out.println();
+		System.out.println("Vous êtes le [O]");
+		pause();
+		
+		Perso[1] = choix(2);
 		System.out.println("Vous avez choisi : ");
-		//System.out.println(Perso2.toString);
+		System.out.println(Perso[1].toString());
+		System.out.println();
+		System.out.println("Vous êtes la [X]");
+		pause();
+		
+		//affichage du jeu initial
 		String [][] plat = init();
-		maj(plat, Perso1, Perso2);
+		maj(plat, Perso[0], Perso[1]);
 		affichage(plat);
 		
-		System.out.println("Joueur 1, a vous de jouer !");
-		deplacement(plat, Perso1, Perso2, 1);
+		//jeu :
+int j = 1; 								//joueur 
+boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?
+int m = -1;								//choix du mouvement
+while(F == false){
 		
+	System.out.println("Joueur "+j+", a vous de jouer !");
+	System.out.println("Vous avez 3 mouvements ; vous pouvez : ");
+	rmove();
+	for(int i = 0; i<3; i++){
+		affichage(plat);
+		
+		System.out.println("Mouvement "+(i+1)+" : ");
+		System.out.println("(Pour revoir les mouvements possibles tapez 4)");
+		m = sc.nextInt();
+		while(m == 4){
+			rmove();
+			m = sc.nextInt();
+		}
+		switch(m){
+			case 1 :
+			deplacement(plat, Perso[0], Perso[1], j);
+			pause();
+			break;
+			
+			case 2 : 
+			Perso[j-1].pv(-10);
+			System.out.println(Perso[j-1].toStringPV(j));
+			pause();
+			break;
+			
+			case 3 : 
+			attaque(Perso[j-1], Perso[j%2], (j%2 +1));
+			break;
+		}
 	}
+	j = j%2 +1; //changement joueur 1<->2
+	pause();
+}
+}
+
+//affichage regles mouvements
+public static void rmove(){
+	System.out.println("Vous déplacer d'une case (tapez 1)");
+	System.out.println("Vous soigner 10 pv (tapez 2)");
+	System.out.println("Attaquer l'adversaire (tapez 3)");
+	pause();
+}
+
+//pause graphique
+public static void pause(){
+System.out.println("---");
+System.out.println();
+}
 
 //deplacement
 public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
@@ -51,6 +115,7 @@ public static void affichage(String [][] jeu){
 			System.out.print("["+jeu[i][j]+"]");
 		}System.out.println();
 	}
+pause();
 }
 
 //mis a jour du plateau
@@ -76,4 +141,22 @@ Scanner sc = new Scanner(System.in);
 	}
 	return new perso(numeroPerso, j);
 }
+
+//attaque
+public static void attaque(perso P1, perso P2, int j){
+	P1.attaque(P2);
+	System.out.println("---");
+	System.out.println();
+	System.out.println(P2.toStringPV(j));
+}
+
+//fini ?
+public static boolean fini(perso P1, perso P2){
+	if(P1.pv <1 || P2.pv<1){
+		return true;
+	}else{
+		return false;
+	}
+}
+
 }
