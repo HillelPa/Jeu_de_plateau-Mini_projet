@@ -73,148 +73,59 @@ public class perso{
 	
 	//Déplacements 
 	public void move(perso A){
-		int a=A.posx;
-		int b=A.posy;
-		boolean z;
-		boolean q;
-		boolean s;
-		boolean d;
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Où voulez-vous aller ?");
 		System.out.println();
 			if(this.posy > 0){
 				System.out.println("z pour monter");
-				z=true;
-			}else {
-				z=false;
 			}
 			if(this.posx > 0){
 				System.out.println("q pour aller à gauche");
-				q=true;
-			}else {
-				q=false;
 			}	
 			if(this.posy<8){
 				System.out.println("s pour descendre");
-				s=true;
-			}else {
-				s=false;
 			}
 			if(this.posx<8){
 				System.out.println("d pour aller à droite");
-				d=true;
-			}else {
-				d=false;
 			}
-			if(this.posx==a-1&&this.posy==b) {
-				d=false;
-			}
-			if(this.posx==a+1&&this.posy==b) {
-				q=false;
-			}
-			if(this.posy==b-1&&this.posx==a) {
-				z=false;
-			}
-			if(this.posy==b+1&&this.posx==a) {
-				s=false;
-			}
-
-		
+			
 		String mouv = sc.nextLine();
-
-        if(z==true&&q==true&&s==true&&d==true) {
-        	while(!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("s") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zqsd) :");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???
-        	}
-        }else if(z&&q&&s) {
-        	while(!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("s") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zqs):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???
-        	}
-        }else if(z&&q&&d) {
-            while(!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("d") ){
-            	System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zqd):");
-            	mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-            }
-        }else if(z&&s&&d) {
-            while(!mouv.equals("z") && !mouv.equals("s") && !mouv.equals("d") ){
-            	System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zsd):");
-            	mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-            }
-        }else if(q&&s&&d) {
-        	while(!mouv.equals("q") && !mouv.equals("s") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(z&&q) {
-        	while(!mouv.equals("z") && !mouv.equals("q") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zq):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(z&&s) {
-        	while(!mouv.equals("z") && !mouv.equals("s") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zs):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(z&&d) {
-        	while(!mouv.equals("z") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zd):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(q&&s) {
-        	while(!mouv.equals("q") && !mouv.equals("s") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qs):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(q&&d) {
-        	while(!mouv.equals("q") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qd):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(s&&d) {
-        	while(!mouv.equals("s") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (sd):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(z) {
-        	while(!mouv.equals("z")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (z):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(q) {
-        	while(!mouv.equals("q")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (q):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(s) {
-        	while(!mouv.equals("s")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (s):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(d) {
-        	while(!mouv.equals("d")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (d):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }
-        		
-        	
-        if(mouv.equals("z")){
+		boolean P = this.possible(A, mouv);
+		
+		while(P == false){
+			System.out.println("Vous ne pouvez pas vous déplacer ici !");
+			mouv = sc.nextLine();
+			P = this.possible(A, mouv);
+		}
+		
+		if(mouv.equals("z")){
             this.posy = this.posy-1;
         }
+    
         if(mouv.equals("d")){
             this.posx = this.posx+1;
         }
+       
         if(mouv.equals("s")){
             this.posy = this.posy+1;
         }
+     
         if(mouv.equals("q")){
             this.posx = this.posx-1;
         }
+		
 }
-
+	
+	//le mouvement est-il valide ?
+	public boolean possible(perso A, String mouv){
+			if( (!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("d") && !mouv.equals("s")) || (this.posy == 0 && mouv.equals("z")) || (this.posy == 8 && mouv.equals("s")) || (this.posx == 0 && mouv.equals("q")) || (this.posx == 0 && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx - 1) && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx + 1) && mouv.equals("q")) || (this.posx == A.posx && this.posy == (A.posy + 1) && mouv.equals("z")) || (this.posx == A.posx && this.posy == (A.posy - 1) && mouv.equals("s"))){
+				return false;
+			}else{
+			return true;
+	}
+}
+	
 	//Distance
 	public int distance(perso B){
 		return Math.abs(this.posx - B.posx) + Math.abs(this.posy - B.posy);
@@ -229,7 +140,7 @@ public class perso{
 	public void attaque(perso B){
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Vous décidez d'attaquer ! quelle attaque voulez vous utiliser ?");
+		System.out.println("Quelle attaque voulez vous utiliser ?");
 		System.out.println(this.A1.toString()+" tapez 1");
 		System.out.println(this.A2.toString()+" tapez 2");
 		int at = sc.nextInt();
