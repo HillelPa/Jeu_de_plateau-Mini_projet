@@ -83,7 +83,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 				break;
 				
 				case 2 :
-				Perso2.move(Perso2);
+				Perso2.move(Perso1);
 				break;
 			}
 		maj(plat, Perso1, Perso2);
@@ -172,7 +172,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 			System .out . flush ();
 		}
 		
-		//pause
+		//pause 
 		public static void timePause (int ms) {
 			try {
 			Thread.sleep(ms);
