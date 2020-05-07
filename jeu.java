@@ -1,20 +1,15 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-//import java.util.Scanner;
-
 public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		
 				System.out.println("NOM DU JEU"); //Inserez le nom du jeu
 				pause();
-				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 10x10)");
+				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
 				System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
-				System.out.println("Les joueurs vont chacun leur tour choisir parmis trois action possible :");
-				System.out.println("- Attaquer pour faire baisser les points de vie de l'adversaire");
-				System.out.println("- Se déplacer dans l'arène (une seule case par déplacement)");
-				System.out.println("- Se soigner pour récuperez des points de vie");
+				System.out.println("Les joueurs vont chacun devront se deplacer d'une case et attaquer l'adversaire");
 				pause();
 				perso[] Perso = new perso [2];
 				
@@ -47,52 +42,22 @@ public class jeu{
 		while(F == false){
 				
 			System.out.println("Joueur "+j+", à vous de jouer !");
-			System.out.println("Vous diposez de 3 mouvements possible ; vous pouvez : ");
-			rmove();
-			for(int i = 0; i<3; i++){
+			
 				timePause(2000);
 				affichage(plat);
+				deplacement(plat, Perso[0], Perso[1], j);
+				timePause(2000);
+				attaque(Perso[j-1], Perso[j%2], (j%2 +1));
+				affichage(plat);
+				timePause(2000);
 				
-				System.out.println("Mouvement "+(i+1)+" : ");
-				System.out.println("(Pour revoir les mouvements possibles tapez 4)");
-				m = sc.nextInt();
-				while(m > 4 || m < 1){
-					if(m > 4 || m < 1) {
-						System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
-						sc.next();
-					}
-					try {
-						m = sc.nextInt();
-					}catch(InputMismatchException e) {
-						System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
-						sc.next();
-					}
-				}
-				
-				while(m == 4){
-					rmove();
-					m = sc.nextInt();
-				}
-				switch(m){
-					case 1 :
-					deplacement(plat, Perso[0], Perso[1], j);
-					pause();
-					break;
-					
-					case 2 : 
-					Perso[j-1].pv(-10);
-					System.out.println(Perso[j-1].toStringPV(j));
-					pause();
-					break;
-					
-					case 3 : 
-					attaque(Perso[j-1], Perso[j%2], (j%2 +1));
-					break;
-				}
-			}
 			j = j%2 +1; //changement joueur 1<->2
 			pause();
+			F = fini(Perso[0], Perso[1]);
 			}
+			
+j = j%2 +1;						//FIN DU JEU
+System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		}
 		
 		//affichage regles mouvements
@@ -198,12 +163,16 @@ public class jeu{
 			System.out.println();
 			System.out.println(P2.toStringPV(j));
 		}
+		
+		//effaceEcran
 		public static void effaceEcran () {
 			String ESC = " \033[ ";
 			System .out . print (ESC +"2J");
 			System .out . print (ESC +"0;0 H");
 			System .out . flush ();
 		}
+		
+		//pause
 		public static void timePause (int ms) {
 			try {
 			Thread.sleep(ms);
