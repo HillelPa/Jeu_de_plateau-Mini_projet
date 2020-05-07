@@ -63,7 +63,7 @@ public class perso{
 	
 	//description
 	public String toString(){
-		return this.nom+", vous avez "+this.pv+" points de vie \n"+"Ses attaques sont : "+this.A1.toString()+" et "+this.A2.toString();
+		return this.nom+", vous avez "+this.pv+" points de vie \n"+"Vos attaques sont : "+this.A1.toString()+" et "+this.A2.toString();
 		}
 
 	//description point de vie
@@ -107,16 +107,16 @@ public class perso{
 			}else {
 				d=false;
 			}
-			if(this.posx==a-1) {
+			if(this.posx==a-1&&this.posy==b) {
 				d=false;
 			}
-			if(this.posx==a+1) {
+			if(this.posx==a+1&&this.posy==b) {
 				q=false;
 			}
-			if(this.posy==b-1) {
+			if(this.posy==b-1&&this.posx==a) {
 				z=false;
 			}
-			if(this.posy==b+1) {
+			if(this.posy==b+1&&this.posx==a) {
 				s=false;
 			}
 
@@ -143,64 +143,59 @@ public class perso{
             	System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zsd):");
             	mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
             }
-        }else if(d&&q&&s) {
+        }else if(q&&s&&d) {
         	while(!mouv.equals("q") && !mouv.equals("s") && !mouv.equals("d") ){
         		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(z&&q) {
         	while(!mouv.equals("z") && !mouv.equals("q") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
-        		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
-        	}
-        }else if(z&&q) {
-        	while(!mouv.equals("z") && !mouv.equals("q") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zq):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(z&&s) {
         	while(!mouv.equals("z") && !mouv.equals("s") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zs):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(z&&d) {
         	while(!mouv.equals("z") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (zd):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(q&&s) {
         	while(!mouv.equals("q") && !mouv.equals("s") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qs):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(q&&d) {
         	while(!mouv.equals("q") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qd):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(s&&d) {
         	while(!mouv.equals("s") && !mouv.equals("d") ){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (sd):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(z) {
         	while(!mouv.equals("z")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (z):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(q) {
         	while(!mouv.equals("q")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (q):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(s) {
         	while(!mouv.equals("s")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (s):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }else if(d) {
         	while(!mouv.equals("d")){
-        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (qsd):");
+        		System.out.println("Ce déplacement n'est pas valide ; chosissez en un autre (d):");
         		mouv = sc.nextLine(); // ici ce ne serait pas plutot J.posy ou J.posx???	
         	}
         }

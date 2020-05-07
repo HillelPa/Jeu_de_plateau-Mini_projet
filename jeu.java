@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 //import java.util.Scanner;
@@ -8,7 +9,13 @@ public class jeu{
 		
 				System.out.println("NOM DU JEU"); //Inserez le nom du jeu
 				pause();
-				
+				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 10x10)");
+				System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
+				System.out.println("Les joueurs vont chacun leur tour choisir parmis trois action possible :");
+				System.out.println("- Attaquer pour faire baisser les points de vie de l'adversaire");
+				System.out.println("- Se déplacer dans l'arène (une seule case par déplacement)");
+				System.out.println("- Se soigner pour récuperez des points de vie");
+				pause();
 				perso[] Perso = new perso [2];
 				
 				Perso[0] = choix(1);
@@ -26,25 +33,42 @@ public class jeu{
 				pause();
 				
 				//affichage du jeu initial
+				timePause(2000);
+				System.out.println("Voici l'arène !");
+				System.out.println();
 				String [][] plat = init();
 				maj(plat, Perso[0], Perso[1]);
 				affichage(plat);
-				
+				timePause(5000);
 				//jeu :
 		int j = 1; 								//joueur 
 		boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?
 		int m = -1;								//choix du mouvement
 		while(F == false){
 				
-			System.out.println("Joueur "+j+", a vous de jouer !");
-			System.out.println("Vous avez 3 mouvements ; vous pouvez : ");
+			System.out.println("Joueur "+j+", à vous de jouer !");
+			System.out.println("Vous diposez de 3 mouvements possible ; vous pouvez : ");
 			rmove();
 			for(int i = 0; i<3; i++){
+				timePause(2000);
 				affichage(plat);
 				
 				System.out.println("Mouvement "+(i+1)+" : ");
 				System.out.println("(Pour revoir les mouvements possibles tapez 4)");
 				m = sc.nextInt();
+				while(m > 4 || m < 1){
+					if(m > 4 || m < 1) {
+						System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
+						sc.next();
+					}
+					try {
+						m = sc.nextInt();
+					}catch(InputMismatchException e) {
+						System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
+						sc.next();
+					}
+				}
+				
 				while(m == 4){
 					rmove();
 					m = sc.nextInt();
@@ -81,8 +105,9 @@ public class jeu{
 		
 		//pause graphique
 		public static void pause(){
-		System.out.println("---");
-		System.out.println();
+			System.out.println();
+			System.out.println("---");
+			System.out.println();
 		}
 		
 		//deplacement
@@ -134,13 +159,34 @@ public class jeu{
 		
 		//choix du personnage
 		public static perso choix(int j){ // j : joueur 
-		Scanner sc = new Scanner(System.in);
-			System.out.println("Bienvenue dans l'arène joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
+			timePause(1000);
+			Scanner sc = new Scanner(System.in);
+			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
 									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
 			int numeroPerso = sc.nextInt();
+			// Tentative de code alternatif pour forcer l'entrée d'un int
+			/*boolean b=false;
+			while(!b) {
+				try {
+					numeroPerso = sc.nextInt();
+					b=true;
+				}catch(InputMismatchException e) {
+					System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
+					sc.next();
+					b=false;
+				}
+			}*/
 			while(numeroPerso > 4 || numeroPerso < 1){
-				System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
-				numeroPerso = sc.nextInt();
+				if(numeroPerso > 4 || numeroPerso < 1) {
+					System.out.println("Tu dois choisir entre 1 ou 4 jeune padawan");
+					sc.next();
+				}
+				try {
+					numeroPerso = sc.nextInt();
+				}catch(InputMismatchException e) {
+					System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
+					sc.next();
+				}
 			}
 			return new perso(numeroPerso, j);
 		}
