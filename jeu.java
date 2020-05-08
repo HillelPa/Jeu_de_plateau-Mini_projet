@@ -50,8 +50,6 @@ public class jeu{
 				if(t%3 == 0){					//un nouveau bonus tous les trois tours
 					nbrB++;
 					Bonus[nbrB] = newbonus();
-					nbrB++;
-					Bonus[nbrB] = newbonus();
 				}
 				
 			System.out.println("Joueur "+j+", à vous de jouer !");
