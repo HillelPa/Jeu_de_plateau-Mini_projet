@@ -32,21 +32,39 @@ public class jeu{
 				System.out.println("Voici l'arène !");
 				System.out.println();
 				String [][] plat = init();
-				maj(plat, Perso[0], Perso[1]);
+				int nbrB = -1;
+				bonus [] Bonus = new bonus [100];
+				nbrB++;
+				Bonus[nbrB] = new bonus();
+				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
 				affichage(plat);
 				timePause(5000);
+				
 				//jeu :
 		int j = 1; 								//joueur 
-		boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?
-		int m = -1;								//choix du mouvement
+		boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?	
+		int t = 0; 								// nombre de tour
 		while(F == false){
+			t++;
+		System.out.println("tour : "+t);
+				if(t%3 == 0){					//un nouveau bonus tous les trois tours
+					nbrB++;
+					Bonus[nbrB] = newbonus();
+					nbrB++;
+					Bonus[nbrB] = newbonus();
+				}
 				
 			System.out.println("Joueur "+j+", à vous de jouer !");
-			
+				
 				timePause(2000);
+				
 				affichage(plat);
 				deplacement(plat, Perso[0], Perso[1], j);
+				surbonus(Perso[j-1], Bonus, nbrB);
+				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
+				affichage(plat);
 				timePause(2000);
+				
 				attaque(Perso[j-1], Perso[j%2], (j%2 +1));
 				affichage(plat);
 				timePause(2000);
@@ -56,18 +74,31 @@ public class jeu{
 			F = fini(Perso[0], Perso[1]);
 			}
 			
-j = j%2 +1;						//FIN DU JEU
+j = j%2 +1;				
+							//FIN DU JEU
 System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		}
 		
-		//affichage regles mouvements
-		public static void rmove(){
-			System.out.println("Vous déplacer d'une case (tapez 1)");
-			System.out.println("Vous soigner 10 pv (tapez 2)");
-			System.out.println("Attaquer l'adversaire (tapez 3)");
-			pause();
+		//Le joueur vient-il de prendre un bonus ?
+		public static void surbonus(perso Perso, bonus [] B, int nbrB){
+			for(int i = 0; i<nbrB +1; i++){
+				if(Perso.posx == B[i].posx && Perso.posy == B[i].posy && !B[i].name.equals(" ")){
+					System.out.println("Vous prenez le "+B[i].toString());
+					Perso.A1.Acac = Perso.A1.Acac + B[i].bonusAttaque;
+					Perso.A2.Adist = Perso.A2.Adist + B[i].bonusAttaque;
+					Perso.pv = Perso.pv + B[i].bonusVie;
+					B[i] = new bonus();
+					break;
+				}
+			}
 		}
-		
+						
+		//creation d'un bonus
+		public static bonus newbonus(){
+bonus B = new bonus((int)(Math.random()*4)+1);
+return B;
+}
+
 		//pause graphique
 		public static void pause(){
 			System.out.println();
@@ -86,8 +117,6 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 				Perso2.move(Perso1);
 				break;
 			}
-		maj(plat, Perso1, Perso2);
-		affichage(plat);
 		}
 		
 		//création du plateau
@@ -112,7 +141,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		}
 		
 		//mis a jour du plateau
-		public static void maj(String [][] plateau, perso Perso1, perso Perso2){
+		public static void maj(String [][] plateau, perso Perso1, perso Perso2, bonus [] B, int nbrbonus){
 			for(int i = 0; i<plateau.length; i++){
 					for(int j = 0; j<plateau[i].length; j++){
 						plateau[i][j] = " ";
@@ -120,6 +149,11 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 				}
 			plateau[Perso1.posy][Perso1.posx] = "O";
 			plateau[Perso2.posy][Perso2.posx] = "X";
+			for(int i = 0; i<nbrbonus+1; i++){
+				if(!B[i].name.equals(" ")){  
+					plateau[B[i].posy][B[i].posx] = B[i].abrev;
+				}
+			}
 		}
 		
 		//choix du personnage
@@ -129,8 +163,8 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
 									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
 			int numeroPerso = sc.nextInt();
-			// Tentative de code alternatif pour forcer l'entrée d'un int
-			/*boolean b=false;
+			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
+			boolean b=false;
 			while(!b) {
 				try {
 					numeroPerso = sc.nextInt();
@@ -140,8 +174,8 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 					sc.next();
 					b=false;
 				}
-			}*/
-			while(numeroPerso > 4 || numeroPerso < 1){
+			}
+			/*while(numeroPerso > 4 || numeroPerso < 1){
 				if(numeroPerso > 4 || numeroPerso < 1) {
 					System.out.println("Tu dois choisir entre 1 ou 4 jeune padawan");
 					sc.next();
@@ -152,7 +186,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 					System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
 					sc.next();
 				}
-			}
+			}*/
 			return new perso(numeroPerso, j);
 		}
 		
