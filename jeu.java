@@ -4,7 +4,13 @@ import java.util.Scanner;
 public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		
+				
+				System.out.println("    Z    ");
+        			System.out.println("    ↑    ");
+        			System.out.println("Q ←   → D");
+        			System.out.println("    ↓    ");
+        			System.out.println("    S    ");
+				
 				System.out.println("NOM DU JEU"); //Inserez le nom du jeu
 				pause();
 				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
