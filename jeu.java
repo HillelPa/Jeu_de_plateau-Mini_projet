@@ -224,10 +224,11 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		}
 	
 		//
-		public static void ShowPerso (Perso a){
-		        System.out.println(this.nom);
- 		       	System.out.println("pv"+this.pv);
- 		       	System.out.println("type"+this.type);
+		public static void ShowPerso (int a){
+			perso P = new perso (a, 1);
+		        System.out.println(A.nom);
+ 		       	System.out.println("pv"+A.pv);
+ 		       	System.out.println("type"+A.type);
   		}
     
    		public static void ShowAllPerso(){
