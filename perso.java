@@ -142,7 +142,8 @@ public class perso{
 		System.out.println("Quelle attaque voulez vous utiliser ?");
 		System.out.println(this.A1.toString()+" tapez 1");
 		System.out.println(this.A2.toString()+" tapez 2");
-		int at = sc.nextInt();
+		//int at = sc.nextInt();
+		int at = jeu.estPossible(1,2);
 		int d = this.distance(B);
 		switch (at){
 			case 1 : 
