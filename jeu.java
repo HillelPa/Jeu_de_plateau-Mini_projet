@@ -158,8 +158,8 @@ return B;
 		public static perso choix(int j){ // j : joueur 
 			timePause(1000);
 			Scanner sc = new Scanner(System.in);
-			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
-									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :");
+			ShowAllPerso();
 			int numeroPerso = -1;
 			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
 			boolean b=false;
@@ -222,5 +222,21 @@ return B;
 				return false;
 			}
 		}
+	
+		//
+		public static void ShowPerso (Perso a){
+		        System.out.println(this.nom);
+ 		       	System.out.println("pv"+this.pv);
+ 		       	System.out.println("type"+this.type);
+  		}
+    
+   		public static void ShowAllPerso(){
+        		ShowPerso(1);
+        		ShowPerso(2);
+        		ShowPerso(3);
+        		ShowPerso(4);
+		}
+}
+
 
 }
