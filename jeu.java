@@ -160,19 +160,22 @@ return B;
 			Scanner sc = new Scanner(System.in);
 			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
 									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
-			int numeroPerso = sc.nextInt();
+			int numeroPerso = -1;
 			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
 			boolean b=false;
 			while(!b) {
+				while(numeroPerso > 4 || numeroPerso < 1){
 				try {
 					numeroPerso = sc.nextInt();
 					b=true;
 				}catch(InputMismatchException e) {
-					System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
+					System.out.println("Tu dois choisir un chiffre ");
 					sc.next();
 					b=false;
 				}
+				System.out.println("entre 1 et 4 jeune padawan");
 			}
+		}
 			/*while(numeroPerso > 4 || numeroPerso < 1){
 				if(numeroPerso > 4 || numeroPerso < 1) {
 					System.out.println("Tu dois choisir entre 1 ou 4 jeune padawan");
