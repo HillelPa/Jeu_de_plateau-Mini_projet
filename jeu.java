@@ -93,9 +93,9 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 						
 		//creation d'un bonus
 		public static bonus newbonus(){
-bonus B = new bonus((int)(Math.random()*4)+1);
-return B;
-}
+			bonus B = new bonus((int)(Math.random()*4)+1);
+			return B;
+		}
 
 		//pause graphique
 		public static void pause(){
@@ -154,29 +154,30 @@ return B;
 			}
 		}
 		
-		//choix du personnage
 		public static perso choix(int j){ // j : joueur 
 			timePause(1000);
 			Scanner sc = new Scanner(System.in);
-			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :");
-			ShowAllPerso();
-			int numeroPerso = -1;
+			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
+									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+			int numeroPerso = estPossible(1,4);
 			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
-			boolean b=false;
+			
+			/*boolean b=false;
 			while(!b) {
 				while(numeroPerso > 4 || numeroPerso < 1){
-				try {
+					System.out.println("(Entre 1 et 4 !)");
+					try {
 					numeroPerso = sc.nextInt();
 					b=true;
 				}catch(InputMismatchException e) {
-					System.out.println("Tu dois choisir un chiffre ");
+					System.out.print("Un chiffre s'il te plait") ;
 					sc.next();
 					b=false;
 				}
-				System.out.println("entre 1 et 4 jeune padawan");
+				
+				}
 			}
-		}
-			/*while(numeroPerso > 4 || numeroPerso < 1){
+			while(numeroPerso > 4 || numeroPerso < 1){
 				if(numeroPerso > 4 || numeroPerso < 1) {
 					System.out.println("Tu dois choisir entre 1 ou 4 jeune padawan");
 					sc.next();
@@ -190,7 +191,6 @@ return B;
 			}*/
 			return new perso(numeroPerso, j);
 		}
-		
 		//attaque
 		public static void attaque(perso P1, perso P2, int j){
 			P1.attaque(P2);
@@ -236,7 +236,29 @@ return B;
         		ShowPerso(3);
         		ShowPerso(4);
 		}
-}
+		public static int estPossible (int a, int b) {
+			Scanner sc = new Scanner(System.in);
+			int numeroPerso=-1;
+			boolean B=false;
+			while(!B) {
+				while(numeroPerso > 4 || numeroPerso < 1){
+					System.out.println("(Entre "+a+" et "+b+"!)");
+					try {
+					numeroPerso = sc.nextInt();
+					B=true;
+				}catch(InputMismatchException e) {
+					System.out.print("Un chiffre s'il te plait") ;
+					sc.next();
+					B=false;
+				}
+				
+				}
+			}
+			return numeroPerso;
+		}
 
 
 }
+
+
+
