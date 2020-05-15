@@ -157,8 +157,8 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		public static perso choix(int j){ // j : joueur 
 			timePause(1000);
 			Scanner sc = new Scanner(System.in);
-			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
-									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :");
+			ShowAllPerso();
 			int numeroPerso = estPossible(1,4);
 			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
 			
