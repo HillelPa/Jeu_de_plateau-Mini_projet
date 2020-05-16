@@ -72,19 +72,13 @@ public class perso{
 		
 		System.out.println("Où voulez-vous aller ?");
 		System.out.println();
-			if(this.posy > 0){
-				System.out.println("z ↑︎");
+			if (x==0){
+				
+			}else if(x==8){
+				
+			}else{
+				
 			}
-			if(this.posx > 0){
-				System.out.println("q ←");
-			}	
-			if(this.posy<8){
-				System.out.println("s ↓");
-			}
-			if(this.posx<8){
-				System.out.println("d︎ →");
-			}
-	
 		String mouv = sc.nextLine();
 		boolean P = this.possible(A, mouv);
 		
