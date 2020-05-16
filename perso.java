@@ -72,12 +72,55 @@ public class perso{
 		
 		System.out.println("Où voulez-vous aller ?");
 		System.out.println();
+		
 			if (x==0){
-				
+				if (y==0){
+					System.out.println("      → D");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}else if(y==8){
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("      → D");
+				}else{
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("      → D");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}
 			}else if(x==8){
-				
+				if (y==0){
+					System.out.println("Q ←      ");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}else if(y==8){
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("Q ←      ");
+				}else{
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("Q ←      ");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}
 			}else{
-				
+				if (y==0){
+					System.out.println("Q ←   → D");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}else if(y==8){
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("Q ←   → D");
+				}else{
+					System.out.println("    Z    ");
+					System.out.println("    ↑    ");
+					System.out.println("Q ←   → D");
+					System.out.println("    ↓    ");
+					System.out.println("    S    ");
+				}
 			}
 		String mouv = sc.nextLine();
 		boolean P = this.possible(A, mouv);
