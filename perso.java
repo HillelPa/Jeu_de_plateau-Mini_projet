@@ -73,12 +73,12 @@ public class perso{
 		System.out.println("Où voulez-vous aller ?");
 		System.out.println();
 		
-			if (x==0){
-				if (y==0){
+			if (posx==0){
+				if (posy==0){
 					System.out.println("      → D");
 					System.out.println("    ↓    ");
 					System.out.println("    S    ");
-				}else if(y==8){
+				}else if(posy==8){
 					System.out.println("    Z    ");
 					System.out.println("    ↑    ");
 					System.out.println("      → D");
@@ -89,12 +89,12 @@ public class perso{
 					System.out.println("    ↓    ");
 					System.out.println("    S    ");
 				}
-			}else if(x==8){
-				if (y==0){
+			}else if(posx==8){
+				if (posy==0){
 					System.out.println("Q ←      ");
 					System.out.println("    ↓    ");
 					System.out.println("    S    ");
-				}else if(y==8){
+				}else if(posy==8){
 					System.out.println("    Z    ");
 					System.out.println("    ↑    ");
 					System.out.println("Q ←      ");
@@ -106,11 +106,11 @@ public class perso{
 					System.out.println("    S    ");
 				}
 			}else{
-				if (y==0){
+				if (posy==0){
 					System.out.println("Q ←   → D");
 					System.out.println("    ↓    ");
 					System.out.println("    S    ");
-				}else if(y==8){
+				}else if(posy==8){
 					System.out.println("    Z    ");
 					System.out.println("    ↑    ");
 					System.out.println("Q ←   → D");
