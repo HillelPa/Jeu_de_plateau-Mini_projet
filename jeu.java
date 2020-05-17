@@ -50,6 +50,10 @@ public class jeu{
 				if(t%3 == 0){					//un nouveau bonus tous les trois tours
 					nbrB++;
 					Bonus[nbrB] = newbonus();
+					System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
+					maj(plat, Perso[0], Perso[1], Bonus, nbrB);
+					affichage(plat);
+					pause();
 				}
 				
 			System.out.println("Joueur "+j+", à vous de jouer !");
@@ -191,6 +195,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 			}*/
 			return new perso(numeroPerso, j);
 		}
+		
 		//attaque
 		public static void attaque(perso P1, perso P2, int j){
 			P1.attaque(P2);
@@ -236,12 +241,14 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
         		ShowPerso(3);
         		ShowPerso(4);
 		}*/
+		
+		//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
 		public static int estPossible (int a, int b) {
 			Scanner sc = new Scanner(System.in);
-			int numeroPerso=-1;
+			int numeroDemande=-1;
 			boolean B=false;
 			while(!B) {
-				while(numeroPerso > b || numeroPerso < a){
+				while(numeroDemande > b || numeroDemande < a){
 					System.out.println("(Entre "+a+" et "+b+"!)");
 					try {
 					numeroPerso = sc.nextInt();
@@ -254,7 +261,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 				
 				}
 			}
-			return numeroPerso;
+			return numeroDemande;
 		}
 
 
