@@ -5,7 +5,7 @@ public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 				
-				System.out.println("NOM DU JEU"); //Inserez le nom du jeu
+				afficherNom(); //Inserez le nom du jeu
 				pause();
 				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
 				System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
@@ -245,10 +245,10 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 		//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
 		public static int estPossible (int a, int b) {
 			Scanner sc = new Scanner(System.in);
-			int numeroDemande=-1;
+			int numeroPerso=-1;
 			boolean B=false;
 			while(!B) {
-				while(numeroDemande > b || numeroDemande < a){
+				while(numeroPerso > b || numeroPerso < a){
 					System.out.println("(Entre "+a+" et "+b+"!)");
 					try {
 					numeroPerso = sc.nextInt();
@@ -261,9 +261,20 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 				
 				}
 			}
-			return numeroDemande;
+			return numeroPerso;
 		}
 
+		//nom du jeu
+		public static void afficherNom(){
+			System.out.println("  ___      ___                            ___________");
+			System.out.println(" |   |    |   |				 |     	     |        	        __	    __");
+			System.out.println(" |   |    |   | ______  _  ____    ____  |     ______|   __   _______  |  |     __| |___");
+			System.out.println(" |   |____|   ||   ___|| |/ ___| / __ |  |    |____     |__| /   ____| |  |    |__   ___|");
+			System.out.println(" |    ____    ||  |__  |  /      ||  ||  |     ____|     __  |  /      |  |_____  | |");
+			System.out.println(" |   |    |   ||   __| | |       ||  ||  |    |         |  | |  |   __ |   ___  | | |");
+			System.out.println(" |   |    |   ||  |___ | |       ||__||  |    |         |  | |  |__| | |  |   | | | |");
+			System.out.println(" |___|    |___||______||_|       |____/  |____|         |__| |_______| |__|   |_| |_|");
+}
 
 }
 
