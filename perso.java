@@ -75,51 +75,51 @@ public class perso{
 		
 			if (posx==0){
 				if (posy==0){
-					System.out.println("      → D");
+					System.out.println("      → d");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}else if(posy==8){
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("      → D");
+					System.out.println("      → d");
 				}else{
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("      → D");
+					System.out.println("      → d");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}
 			}else if(posx==8){
 				if (posy==0){
-					System.out.println("Q ←      ");
+					System.out.println("q ←      ");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}else if(posy==8){
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("Q ←      ");
+					System.out.println("q ←      ");
 				}else{
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("Q ←      ");
+					System.out.println("q ←      ");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}
 			}else{
 				if (posy==0){
-					System.out.println("Q ←   → D");
+					System.out.println("q ←   → d");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}else if(posy==8){
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("Q ←   → D");
+					System.out.println("q ←   → d");
 				}else{
-					System.out.println("    Z    ");
+					System.out.println("    z    ");
 					System.out.println("    ↑    ");
-					System.out.println("Q ←   → D");
+					System.out.println("q ←   → d");
 					System.out.println("    ↓    ");
-					System.out.println("    S    ");
+					System.out.println("    s    ");
 				}
 			}
 		String mouv = sc.nextLine();
