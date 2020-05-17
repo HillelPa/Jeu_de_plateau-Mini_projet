@@ -2,6 +2,7 @@ public class bonus{
 
 public String name;
 public String abrev;
+public String description;
 public int posx;
 public int posy;
 public int bonusAttaque;
@@ -12,34 +13,38 @@ public bonus(int a){ //a : type de bonus
 		case 1:
 		this.name = "Potion de vie";
 		this.abrev = "♥︎️";
+		this.description = " Cette potion regenere 40 de vos points de vie";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
 		this.bonusAttaque = 0;
-		this.bonusVie = 30;
+		this.bonusVie = 40;
 	break;
 		case 2:
-		this.name = "Bonus 2";
-		this.abrev = "b";
+		this.name = "Potion de force";
+		this.abrev = "f";
+		this.description = " Cette potion augmente vos ataques de 15 points";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
-		this.bonusAttaque = 1;
-		this.bonusVie = 1;
+		this.bonusAttaque = 15;
+		this.bonusVie = 0;
 	break;
 		case 3:
-		this.name = "Bonus 3";
-		this.abrev = "c";
+		this.name = "Potion de Super Force";
+		this.abrev = "F";
+		this.description = " Cette potion augmente vos ataques de 30 points";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
-		this.bonusAttaque = 1;
-		this.bonusVie = 1;
+		this.bonusAttaque = 30;
+		this.bonusVie = 0;
 	break;
 		case 4:
-		this.name = "Bonus 4";
-		this.abrev = "d";
+		this.name = "Sursaut de vie";
+		this.abrev = "️H";
+		this.description = " Cette potion regenere 20 de vos points de vie";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
-		this.bonusAttaque = 1;
-		this.bonusVie = 1;
+		this.bonusAttaque = 0;
+		this.bonusVie = 20;
 	break;
 	}
 }
@@ -54,7 +59,7 @@ public bonus(){ //constructeur pour bonus qui sert a rien
 }
 
 public String toString(){
-	return "bonus : "+this.name+" ce bonus vous accorde "+this.bonusAttaque+" de points d'attaque en plus et "+this.bonusVie+" points de vie";
+	return "bonus : "+this.name+this.description;
 }
 
 }
