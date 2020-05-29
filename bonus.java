@@ -58,8 +58,10 @@ public bonus(){ //constructeur pour bonus qui sert a rien
 		this.bonusVie = 0;
 }
 
+/*
 public String toString(){
 	return "bonus : "+this.name+this.description;
 }
+*/
 
 }
