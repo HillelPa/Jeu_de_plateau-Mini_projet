@@ -5,48 +5,48 @@ public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 				
-				afficherNom(); //Inserez le nom du jeu
-				pause();
-				System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
-				System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
-				System.out.println("Les joueurs vont chacun devront se deplacer d'une case et attaquer l'adversaire");
-				pause();
-				perso[] Perso = new perso [2];
-				
-				Perso[0] = choix(1);
-				System.out.println("Vous avez choisi : ");
-				System.out.println(Perso[0].toString());
-				System.out.println();
-				System.out.println("Vous êtes le [O]");
-				pause();
-				
-				Perso[1] = choix(2);
-				System.out.println("Vous avez choisi : ");
-				System.out.println(Perso[1].toString());
-				System.out.println();
-				System.out.println("Vous êtes la [X]");
-				pause();
-				
-				//affichage du jeu initial
-				timePause(2000);
-				System.out.println("Voici l'arène !");
-				System.out.println();
-				String [][] plat = init();
-				int nbrB = -1;
-				bonus [] Bonus = new bonus [100];
-				nbrB++;
-				Bonus[nbrB] = new bonus();
-				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
-				affichage(plat);
-				timePause(5000);
-				
-				//jeu :
-		int j = 1; 								//joueur 
-		boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?	
-		int t = 0; 								// nombre de tour
-		while(F == false){
-			t++;
-		System.out.println("tour : "+t);
+			afficherNom(); //Inserez le nom du jeu
+			pause();
+			System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
+			System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
+			System.out.println("Les joueurs vont chacun devront se deplacer d'une case et attaquer l'adversaire");
+			pause();
+			perso[] Perso = new perso [2];
+			
+			Perso[0] = choix(1);
+			System.out.println("Vous avez choisi : ");
+			System.out.println(Perso[0].toString());
+			System.out.println();
+			System.out.println("Vous êtes le [O]");
+			pause();
+			
+			Perso[1] = choix(2);
+			System.out.println("Vous avez choisi : ");
+			System.out.println(Perso[1].toString());
+			System.out.println();
+			System.out.println("Vous êtes la [X]");
+			pause();
+			
+			//affichage du jeu initial
+			timePause(2000);
+			System.out.println("Voici l'arène !");
+			System.out.println();
+			String [][] plat = init();
+			int nbrB = -1;
+			bonus [] Bonus = new bonus [100];
+			nbrB++;
+			Bonus[nbrB] = new bonus();
+			maj(plat, Perso[0], Perso[1], Bonus, nbrB);
+			affichage(plat);
+			timePause(5000);
+			
+			//jeu :
+			int j = 1; 								//joueur 
+			boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?	
+			int t = 0; 								// nombre de tour
+			while(F == false){
+				t++;
+				System.out.println("tour : "+t);
 				if(t%3 == 0){					//un nouveau bonus tous les trois tours
 					nbrB++;
 					Bonus[nbrB] = newbonus();
@@ -76,10 +76,10 @@ public class jeu{
 			F = fini(Perso[0], Perso[1]);
 			}
 			
-j = j%2 +1;				
-							//FIN DU JEU
-System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
-		}
+			j = j%2 +1;				
+			//FIN DU JEU
+			System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
+	}
 		
 		//Le joueur vient-il de prendre un bonus ?
 		public static void surbonus(perso Perso, bonus [] B, int nbrB){
@@ -274,7 +274,7 @@ System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
 			System.out.println(" |   |    |   ||   __| | |       ||  ||  |    |         |  | |  |   __ |   ___  | | |");
 			System.out.println(" |   |    |   ||  |___ | |       ||__||  |    |         |  | |  |__| | |  |   | | | |");
 			System.out.println(" |___|    |___||______||_|       |____/  |____|         |__| |_______| |__|   |_| |_|");
-}
+		}
 
 }
 
