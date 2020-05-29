@@ -51,7 +51,7 @@ public class jeu{
 				t++;
 				System.out.println("[Tour : "+t+"]");
 				System.out.println();
-				if(t%3 == 0){					//un nouveau bonus tous les trois tours
+				if(t%5 == 0){					//un nouveau bonus tous les trois tours
 					nbrB++;
 					Bonus[nbrB] = newbonus();
 					System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
