@@ -169,6 +169,7 @@ public class jeu{
 		Scanner sc = new Scanner(System.in);
 		System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
 								+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+		ShowAllPerso();
 		int numeroPerso = estPossible(1,4);
 		return new perso(numeroPerso, j);
 	}
