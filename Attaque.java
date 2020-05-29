@@ -20,7 +20,7 @@ public class Attaque{
 		break;
 		case 2 :
 			if(d == true){
-				this.nom = "lancer de couteaux";
+				this.nom = "Lancer de couteaux";
 				this.Adist = 10;
 				this.Acac = 5;
 			}else{
