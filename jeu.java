@@ -7,9 +7,12 @@ public class jeu{
 				
 			afficherNom(); //Inserez le nom du jeu
 			pause();
-			System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9)");
-			System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
-			System.out.println("Les joueurs vont chacun devront se deplacer d'une case et attaquer l'adversaire");
+			System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9).");
+			System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre.");
+			System.out.println("Les joueurs vont chacun leurs tour devoir se deplacer d'une case et ensuite attaquer l'adversaire.");
+			System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récuperer ces bonus. \n"
+								+ "Ces bonus peuvent booster vos attaques ou vous donner un regain de points de vie...");
+			System.out.println("Etes vous prêt ? C'est parti ! ");
 			pause();
 			perso[] Perso = new perso [2];
 			
@@ -46,7 +49,8 @@ public class jeu{
 			int t = 0; 								// nombre de tour
 			while(F == false){
 				t++;
-				System.out.println("tour : "+t);
+				System.out.println("[Tour : "+t+"]");
+				System.out.println();
 				if(t%3 == 0){					//un nouveau bonus tous les trois tours
 					nbrB++;
 					Bonus[nbrB] = newbonus();
@@ -78,7 +82,8 @@ public class jeu{
 			
 			j = j%2 +1;				
 			//FIN DU JEU
-			System.out.println("BRAVO AU JOUEUR "+j+" C'EST UN VRAI CHAMPION");
+			System.out.println("La partie est finie !");
+			System.out.println("Bravo au joueur "+j+", vous avez gagné !");
 	}
 		
 		//Le joueur vient-il de prendre un bonus ?
@@ -164,35 +169,6 @@ public class jeu{
 			System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
 									+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
 			int numeroPerso = estPossible(1,4);
-			// Tentative de code alternatif pour forcer l'entrée d'un int // IL FAUT RENTRER 2 FOIS, il faut trouver pourquoi
-			
-			/*boolean b=false;
-			while(!b) {
-				while(numeroPerso > 4 || numeroPerso < 1){
-					System.out.println("(Entre 1 et 4 !)");
-					try {
-					numeroPerso = sc.nextInt();
-					b=true;
-				}catch(InputMismatchException e) {
-					System.out.print("Un chiffre s'il te plait") ;
-					sc.next();
-					b=false;
-				}
-				
-				}
-			}
-			while(numeroPerso > 4 || numeroPerso < 1){
-				if(numeroPerso > 4 || numeroPerso < 1) {
-					System.out.println("Tu dois choisir entre 1 ou 4 jeune padawan");
-					sc.next();
-				}
-				try {
-					numeroPerso = sc.nextInt();
-				}catch(InputMismatchException e) {
-					System.out.println("Tu dois choisir entre 1 et 4 jeune padawan");
-					sc.next();
-				}
-			}*/
 			return new perso(numeroPerso, j);
 		}
 		
@@ -277,6 +253,5 @@ public class jeu{
 		}
 
 }
-
 
 
