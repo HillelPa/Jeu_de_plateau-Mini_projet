@@ -53,17 +53,25 @@ public class perso{
 	    
 	//description
 	public String toString(){
-		return this.nom+", vous avez "+this.pv+" points de vie \n"+"Vos attaques sont : "+this.A1.toString()+" et "+this.A2.toString();
+		return "_____________________________________________________________________\n"
+				+"["+this.nom+"]\n"
+				+"❤ : "+this.pv+" pv\n"
+				+"\n"
+				+" Deux attaques : \n"
+				+"---\n"
+				+"Attaque 1 : " +this.A1.nom+"\n"
+				+"Degats a distances : "+this.A1.Adist+"\n"
+				+"Degats au corps a corps : "+this.A1.Acac+"\n"
+				+"\n"
+				+"Attaque 2 : " +this.A2.nom+"\n"
+				+"Degats a distances : "+this.A2.Adist+"\n"
+				+"Degats au corps a corps : "+this.A2.Acac+"\n"
+				+"_____________________________________________________________________\n";
 		}
 
 	//description point de vie
 	public String toStringPV(int j){
 		return "PV joueur "+j+" : "+this.pv;
-	}
-	
-	//description point d'attaque
-	public String toStringAtt(int j){
-		return"Point d'attaque joueur "+j+" : "+this.A1.nom+" -> "+this.A1.Acac+" points & "+this.A2.Adist+" -> "+this.A2.Adist;
 	}
 	
 	//Déplacements 
@@ -179,7 +187,6 @@ public class perso{
 		System.out.println("Quelle attaque voulez vous utiliser ?");
 		System.out.println(this.A1.toString()+" tapez 1");
 		System.out.println(this.A2.toString()+" tapez 2");
-		//int at = sc.nextInt();
 		int at = jeu.estPossible(1,2);
 		int d = this.distance(B);
 		switch (at){
