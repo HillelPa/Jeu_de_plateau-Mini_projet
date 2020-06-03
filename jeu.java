@@ -206,11 +206,10 @@ public class jeu{
 		}
 	}
 	
-	//
-	/*public static void ShowPerso (Perso a){
-	        System.out.println(this.nom);
- 	       	System.out.println("pv"+this.pv);
- 	       	System.out.println("type"+this.type);
+	
+	public static void ShowPerso (Perso a){ // affiche les caractéristiques des personnages en temps réel
+	        System.out.println(" _____________________________________________________________________");
+		System.out.println("| Personage" + this.nom+ " | Reste"+this.pv+" PV | Type "+this.type+" |");
   	}
    
    	public static void ShowAllPerso(){
@@ -218,7 +217,8 @@ public class jeu{
         	ShowPerso(2);
         	ShowPerso(3);
         	ShowPerso(4);
-	}*/
+		System.out.println("|_____________________________________________________________________|");
+	}
 		
 	//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
 	public static int estPossible (int a, int b) {
