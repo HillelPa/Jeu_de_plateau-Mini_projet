@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-				
 		afficherNom(); //affichage du nom du jeu
 		timePause(2000);
 		pause();
@@ -50,7 +49,7 @@ public class jeu{
 			t++;
 			System.out.println("[Tour : "+t+"]");
 			System.out.println();
-			if(t%6 == 0){					//un nouveau bonus tous les six tours
+			if(t%3 == 0){					//un nouveau bonus tous les six tours
 				nbrB++;
 				Bonus[nbrB] = newbonus();
 				System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
@@ -63,11 +62,19 @@ public class jeu{
 			timePause(2000);
 			
 			affichage(plat);
+			System.out.println("Entrez une lettre pour lancer votre dé");
+			String D = sc.nextLine();
+			int d = lancerde();
+			System.out.println("Vous avez fait "+d+"\n"+"Vous pouvez vous déplacer "+d+" fois !");
+			for(int i = 0; i<d; i++){
+			
+			affichage(plat);
 			deplacement(plat, Perso[0], Perso[1], j);
 			surbonus(Perso[j-1], Bonus, nbrB);
 			maj(plat, Perso[0], Perso[1], Bonus, nbrB);
 			affichage(plat);
 			timePause(2000);
+			}
 			
 			attaque(Perso[j-1], Perso[j%2], (j%2 +1));
 			affichage(plat);
@@ -256,7 +263,7 @@ public class jeu{
 	public static void introduction(){
 		System.out.println("_____________________");
 		System.out.println("| B I E N V E N U E |");
-		System.out.println("_____________________");
+		System.out.println("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 		System.out.println();
 		System.out.println("Un combat 1 vs 1 est sur le point de commencer, l'arene est prete !");
 		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
@@ -267,6 +274,37 @@ public class jeu{
 		System.out.println();
 		timePause(1000);
 		System.out.println("C'est parti !");
+	}
+	
+	//lancé de dé
+	public static int lancerde(){
+		int x = (int)(Math.random()*6+1);
+		affichagelancer(x);
+		return x;
+	}
+	
+	//affichage du dé
+	public static void affichagelancer(int x){
+	
+		int a = 0;
+		for(int j = 0; j<20; j++){
+				System.out.println();
+			}
+		for(int i = 0; i<15; i++){
+			a = (int)(Math.random()*6+1);
+		System.out.println("|¯¯¯|");
+		System.out.println("| "+a+" |");
+		System.out.println("|___|");
+			for(int j = 0; j<50; j++){
+				System.out.println();
+			}
+		timePause(50);
+	
+		}
+		System.out.println("|¯¯¯|");
+		System.out.println("| "+x+" |");
+		System.out.println("|___|");
+		
 	}
 		
 }
