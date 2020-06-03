@@ -61,7 +61,7 @@ public class jeu{
 			}
 			
 			System.out.println("Joueur "+j+", à vous de jouer !");
-			
+			ShowAllPerso(); // affichage des caractéristiques des personnages
 			timePause(2000);
 			
 			affichage(plat);
