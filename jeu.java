@@ -5,29 +5,28 @@ public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 				
-		afficherNom(); //Inserez le nom du jeu
+		afficherNom(); //affichage du nom du jeu
+		timePause(2000);
 		pause();
-		System.out.println("Bienvenue, vous vous apprêtez à commencer un combat 1 joueur versus 1 joueur qui se déroulera dans une arène (une grille 9x9).");
-		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre.");
-		System.out.println("Les joueurs vont chacun leurs tour devoir se deplacer d'une case et ensuite attaquer l'adversaire.");
-		System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récuperer ces bonus. \n"
-							+ "Ces bonus peuvent booster vos attaques ou vous donner un regain de points de vie...");
-		System.out.println("Etes vous prêt ? C'est parti ! ");
+		introduction(); //affichage des regles
 		pause();
-		perso[] Perso = new perso [2];
+
+		perso[] Perso = new perso [2]; //Tableau qui stockera les persos des joueurs 1 et 2
 		
+		System.out.println("joueur 1, c'est a vous de choisir un personnage parmis les champions suivant :");
 		Perso[0] = choix(1);
-		System.out.println("Vous avez choisi : ");
-		System.out.println(Perso[0].toString());
+		pause();
+		System.out.println("Vous avez choisi "+Perso[0].nom);	
 		System.out.println();
 		System.out.println("Vous êtes le [O]");
 		pause();
 		
+		System.out.println("joueur 2, c'est a vous de choisir un personnage parmis les champions suivant :");
 		Perso[1] = choix(2);
-		System.out.println("Vous avez choisi : ");
-		System.out.println(Perso[1].toString());
+		pause();
+		System.out.println("Vous avez choisi "+Perso[1].nom);	
 		System.out.println();
-		System.out.println("Vous êtes la [X]");
+		System.out.println("Vous êtes le [X]");
 		pause();
 		
 		//affichage du jeu initial
@@ -61,7 +60,6 @@ public class jeu{
 			}
 			
 			System.out.println("Joueur "+j+", à vous de jouer !");
-			ShowAllPerso(); // affichage des caractéristiques des personnages
 			timePause(2000);
 			
 			affichage(plat);
@@ -163,15 +161,29 @@ public class jeu{
 			}
 		}
 	}
-		
+	
+	//choix du personnage	
 	public static perso choix(int j){ // j : joueur 
-		timePause(1000);
 		Scanner sc = new Scanner(System.in);
-		System.out.println("C'est à vous joueur "+j+", vous devez chosir un personnage parmis les champions suivant :\n"
-								+"Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
-		ShowAllPerso();
+		
+		timePause(1000);
+		System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
 		int numeroPerso = estPossible(1,4);
-		return new perso(numeroPerso, j);
+		perso P = new perso(numeroPerso, j);
+		System.out.println(P.toString());
+		System.out.println("Etes vous sur de votre choix ?");
+		System.out.println("1 pour CONFIRMER,\n"+"2 pour MODIFIER");
+		int y = estPossible(1,2);
+		while(y != 1){
+			System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+			numeroPerso = estPossible(1,4);
+		    P = new perso(numeroPerso, j);
+				System.out.println(P.toString());
+				System.out.println("Etes vous sur de votre choix ?");
+				System.out.println("1 pour CONFIRMER\n"+"2 pour MODIFIER");
+				y = estPossible(1,2);
+		}
+		return P;
 	}
 		
 	//attaque
@@ -205,21 +217,7 @@ public class jeu{
 			return false;
 		}
 	}
-	
-	
-	public static void ShowPerso (Perso a){ // affiche les caractéristiques des personnages en temps réel
-	        System.out.println(" _____________________________________________________________________");
-		System.out.println("| Personage" + this.nom+ " | Reste"+this.pv+" PV | Type "+this.type+" |");
-  	}
-   
-   	public static void ShowAllPerso(){
-        	ShowPerso(1);
-        	ShowPerso(2);
-        	ShowPerso(3);
-        	ShowPerso(4);
-		System.out.println("|_____________________________________________________________________|");
-	}
-		
+			
 	//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
 	public static int estPossible (int a, int b) {
 		Scanner sc = new Scanner(System.in);
@@ -254,6 +252,23 @@ public class jeu{
 		System.out.println(" |___|    |___||______||_|       |____/  |____|         |__| |_______| |__|   |_| |_|");
 	}
 
+	//introduction
+	public static void introduction(){
+		System.out.println("_____________________");
+		System.out.println("| B I E N V E N U E |");
+		System.out.println("_____________________");
+		System.out.println();
+		System.out.println("Un combat 1 vs 1 est sur le point de commencer, l'arene est prete !");
+		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
+		System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récuperer ces bonus. \n"
+							+ "Ces bonus peuvent booster vos attaques ou vous donner un regain de points de vie...");
+		System.out.println();
+		System.out.println("ETES-VOUS PRET(E) ??");
+		System.out.println();
+		timePause(1000);
+		System.out.println("C'est parti !");
+	}
+		
 }
 
 
