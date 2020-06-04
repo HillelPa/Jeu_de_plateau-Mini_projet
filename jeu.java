@@ -57,14 +57,15 @@ public class jeu{
 				Bonus[nbrB] = newbonus(Bonus);
 				System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
 				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
-				affichagePV(Perso);
-				affichage(plat);
 				pause();
 			}
 			
 			System.out.println("Joueur "+j+", à vous de jouer !");
+			// Pause pour ne pas avoir un défilement d'informations trop rapide
 			timePause(2000);
+			// Récapitulatif des points de vie des joueurs entre chaque tour
 			affichagePV(Perso);
+			// Affichage du plateau de jeu
 			affichage(plat);
 			System.out.println("Appuyer sur ENTRER pour lancer votre dé");
 			String D = sc.nextLine();
@@ -286,6 +287,7 @@ public class jeu{
 		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de points de vie et deux attaques qui lui sont propre");
 		System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récupérer ces bonus. \n"
 							+ "Ces bonus peuvent booster vos attaques ou vous donner un regain de points de vie...");
+		System.out.println("Déplacez vous dessus pour les récupérer, une fois récupéré le bonus est effectif jusqu'à la fin de la partie, ne les sous-estimez pas ! ");
 		System.out.println();
 		System.out.println("ETES-VOUS PRET(E) ??");
 		System.out.println();
