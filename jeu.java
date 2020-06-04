@@ -269,19 +269,14 @@ public class jeu{
 		System.out.println("|¯¯¯| |");
 		System.out.println("| "+a+" | |");
 		System.out.println("|___|/");
-			for(int j = 0; j<50; j++){
-				System.out.println();
-			}
 		timePause(100);
+		effaceEcran();
 	
 		}
 		System.out.println(" /¯¯¯/|");
 		System.out.println("|¯¯¯| |");
 		System.out.println("| "+x+" | |");
 		System.out.println("|___|/");
-		for(int j = 0; j<20; j++){
-				System.out.println();
-			}
 	}
 	
 	//affichage rapide des points de vie 
@@ -301,6 +296,14 @@ public class jeu{
 		System.out.println("___________________________________________");
 	}
 	
+	// effacer l'ecran
+	public static void effaceEcran () {
+		String ESC = "\033[";
+		System.out.print(ESC+"2J");
+		System.out.print(ESC+"0;0H");
+		System.out.flush();
+	}
+
 	
 	/** methodes d'états : **/
 	
