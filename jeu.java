@@ -7,12 +7,12 @@ public class jeu{
 		afficherNom(); //affichage du nom du jeu
 		timePause(2000);
 		pause();
-		introduction(); //affichage des regles
+		introduction(); //affichage des règles
 		pause();
 
 		perso[] Perso = new perso [2]; //Tableau qui stockera les persos des joueurs 1 et 2
 		
-		System.out.println("joueur 1, c'est a vous de choisir un personnage parmis les champions suivant :");
+		System.out.println("Joueur 1, c'est à vous de choisir un personnage parmis les champions suivant :");
 		Perso[0] = choix(1);
 		pause();
 		System.out.println("Vous avez choisi "+Perso[0].nom);	
@@ -20,7 +20,7 @@ public class jeu{
 		System.out.println("Vous êtes le [O]");
 		pause();
 		
-		System.out.println("joueur 2, c'est a vous de choisir un personnage parmis les champions suivant :");
+		System.out.println("Joueur 2, c'est à vous de choisir un personnage parmis les champions suivant :");
 		Perso[1] = choix(2);
 		pause();
 		System.out.println("Vous avez choisi "+Perso[1].nom);	
@@ -110,7 +110,7 @@ public class jeu{
 		}
 	}
 						
-	//creation d'un bonus
+	//création d'un bonus
 	public static bonus newbonus(bonus [] Bonus){
 		bonus B = new bonus((int)(Math.random()*4)+1);
 		boolean F = true;
@@ -139,7 +139,7 @@ public class jeu{
 		System.out.println();
 	}
 		
-	//deplacement
+	//déplacement
 	public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
 		switch (j){
 			case 1 :
@@ -173,7 +173,7 @@ public class jeu{
 		pause();
 	}
 		
-	//mis a jour du plateau
+	//mise à jour du plateau
 	public static void maj(String [][] plateau, perso Perso1, perso Perso2, bonus [] B, int nbrbonus){
 		for(int i = 0; i<plateau.length; i++){
 				for(int j = 0; j<plateau[i].length; j++){
@@ -194,19 +194,19 @@ public class jeu{
 		Scanner sc = new Scanner(System.in);
 		
 		timePause(1000);
-		System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+		System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonnier (tapez 3), Diable (tapez 4)");
 		int numeroPerso = estPossible(1,4);
 		perso P = new perso(numeroPerso, j);
 		System.out.println(P.toString());
-		System.out.println("Etes vous sur de votre choix ?");
+		System.out.println("Etes-vous sûr de votre choix ?");
 		System.out.println("1 pour CONFIRMER,\n"+"2 pour MODIFIER");
 		int y = estPossible(1,2);
 		while(y != 1){
-			System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonier (tapez 3), Diable (tapez 4)");
+			System.out.println("Archer (tapez 1), Barbare (tapez 2), Canonnier (tapez 3), Diable (tapez 4)");
 			numeroPerso = estPossible(1,4);
 		    P = new perso(numeroPerso, j);
 				System.out.println(P.toString());
-				System.out.println("Etes vous sur de votre choix ?");
+				System.out.println("Etes-vous sûr de votre choix ?");
 				System.out.println("1 pour CONFIRMER\n"+"2 pour MODIFIER");
 				y = estPossible(1,2);
 		}
@@ -285,9 +285,9 @@ public class jeu{
 		System.out.println("| B I E N V E N U E |");
 		System.out.println("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
 		System.out.println();
-		System.out.println("Un combat 1 vs 1 est sur le point de commencer, l'arene est prete !");
-		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de point de vie et deux attaques qui lui sont propre");
-		System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récuperer ces bonus. \n"
+		System.out.println("Un combat 1 vs 1 est sur le point de commencer, l'arène est prête !");
+		System.out.println("Chaque joueur va devoir choisir un personnage qui a un certain nombre de points de vie et deux attaques qui lui sont propre");
+		System.out.println("Des bonus vont apparaitre aléatoirement dans l'arène tout au long de la partie, à vous de vous déplacer pour récupérer ces bonus. \n"
 							+ "Ces bonus peuvent booster vos attaques ou vous donner un regain de points de vie...");
 		System.out.println();
 		System.out.println("ETES-VOUS PRET(E) ??");
@@ -296,7 +296,7 @@ public class jeu{
 		System.out.println("C'est parti !");
 	}
 	
-	//lancé de dé
+	//lancer de dé
 	public static int lancerde(){
 		int x = (int)(Math.random()*6+1);
 		affichagelancer(x);
