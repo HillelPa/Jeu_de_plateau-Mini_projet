@@ -9,18 +9,18 @@ public class Attaque{
 		switch(a){
 		case 1:
 			if(d == true){
-				this.nom = "Flêches";
+				this.nom = "Flèches";
 				this.Adist = 25;
 				this.Acac = 10;
 			}else{
-				this.nom = "Cri";
+				this.nom = "Cri strident";
 				this.Adist = 5;
 				this.Acac = 15;
 			}
 		break;
 		case 2 :
 			if(d == true){
-				this.nom = "lancé de couteaux";
+				this.nom = "Lancer de couteaux";
 				this.Adist = 10;
 				this.Acac = 5;
 			}else{
@@ -42,7 +42,7 @@ public class Attaque{
 		break;
 		case 4 :
 			if(d == true){
-				this.nom = "Monté aux enfers";
+				this.nom = "Montée aux enfers";
 				this.Adist = 25;
 				this.Acac = 15;
 			}else{
