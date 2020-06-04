@@ -50,7 +50,7 @@ public bonus(int a){ //a : type de bonus
 	
 }
 
-//Bonus qui n'a pas d'effet, permet de remplacer un bonus qui est prit
+//Bonus qui n'a pas d'effet, permet de remplacer un bonus qui est pris
 public bonus(){ 	
 	this.name = " ";
 		this.abrev = " ";
