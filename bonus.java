@@ -13,7 +13,7 @@ public bonus(int a){ //a : type de bonus
 		case 1:
 		this.name = "Potion de vie";
 		this.abrev = "♥︎️";
-		this.description = " Cette potion regenere 40 de vos points de vie";
+		this.description = " Cette potion régénère 40 de vos points de vie";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
 		this.bonusAttaque = 0;
@@ -22,7 +22,7 @@ public bonus(int a){ //a : type de bonus
 		case 2:
 		this.name = "Potion de force";
 		this.abrev = "f";
-		this.description = " Cette potion augmente vos ataques de 15 points";
+		this.description = " Cette potion augmente les dégats de vos attaques de 15 points";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
 		this.bonusAttaque = 15;
@@ -31,7 +31,7 @@ public bonus(int a){ //a : type de bonus
 		case 3:
 		this.name = "Potion de Super Force";
 		this.abrev = "F";
-		this.description = " Cette potion augmente vos attaques de 30 points";
+		this.description = " Cette potion augmente les dégats de vos attaques de 30 points";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
 		this.bonusAttaque = 30;
@@ -40,7 +40,7 @@ public bonus(int a){ //a : type de bonus
 		case 4:
 		this.name = "Sursaut de vie";
 		this.abrev = "️H";
-		this.description = " Cette potion regenere 20 de vos points de vie";
+		this.description = " Cette potion régénère 20 de vos points de vie";
 		this.posx = (int)(Math.random()*9);
 		this.posy = (int)(Math.random()*9);
 		this.bonusAttaque = 0;
