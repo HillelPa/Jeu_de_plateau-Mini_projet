@@ -57,13 +57,14 @@ public class jeu{
 				Bonus[nbrB] = newbonus(Bonus);
 				System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
 				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
+				affichagePV(Perso);
 				affichage(plat);
 				pause();
 			}
 			
 			System.out.println("Joueur "+j+", à vous de jouer !");
 			timePause(2000);
-			
+			affichagePV(Perso);
 			affichage(plat);
 			System.out.println("Appuyer sur ENTRER pour lancer votre dé");
 			String D = sc.nextLine();
@@ -71,16 +72,20 @@ public class jeu{
 			System.out.println("Vous avez fait "+d+"\n"+"Vous pouvez vous déplacer "+d+" fois !");
 			for(int i = 0; i<d; i++){
 				pause();
-			System.out.println("Déplacement numéro "+(i+1));
+			System.out.println("[Déplacement numéro "+(i+1)+"]");
+			System.out.println();
+			affichagePV(Perso);
 			affichage(plat);
 			deplacement(plat, Perso[0], Perso[1], j);
 			surbonus(Perso[j-1], Bonus, nbrB);
 			maj(plat, Perso[0], Perso[1], Bonus, nbrB);
+			affichagePV(Perso);
 			affichage(plat);
 			timePause(2000);
 			}
 			
 			attaque(Perso[j-1], Perso[j%2], (j%2 +1));
+			affichagePV(Perso);
 			affichage(plat);
 			timePause(2000);
 			
@@ -221,14 +226,6 @@ public class jeu{
 		System.out.println(P2.toStringPV(j));
 	}
 		
-	//effaceEcran
-	public static void effaceEcran () {
-		String ESC = " \033[ ";
-		System .out . print (ESC +"2J");
-		System .out . print (ESC +"0;0 H");
-		System .out . flush ();
-	}
-		
 	//pause 
 	public static void timePause (int ms) {
 		try {
@@ -326,9 +323,14 @@ public class jeu{
 		System.out.println("|¯¯¯| |");
 		System.out.println("| "+x+" | |");
 		System.out.println("|___|/");
-		for(int j = 0; j<30; j++){
+		for(int j = 0; j<20; j++){
 				System.out.println();
 			}
 	}
-		
+	
+	//affichage rapide des points de vie 
+	public static void affichagePV(perso[] Perso){
+		System.out.println("J1 : "+Perso[0].pv+" pv");
+		System.out.println("J2 : "+Perso[1].pv+" pv");
+	}
 }
