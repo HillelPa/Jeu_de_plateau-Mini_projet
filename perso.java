@@ -7,21 +7,22 @@ public class perso{
 	public int type; 				// retrouver chaque personnage plus facilement
 	public int posx; 				// la position du joueur sur x 
 	public int posy;				// la position du joueur sur y 
-	public Attaque A1;  				// première attaque
-	public Attaque A2;				// deuxième attaque
+	public Attaque A1;  			// première attaque (celle a utiliser à distance)
+	public Attaque A2;				// deuxième attaque	(celle a utiliser au corps à corps)
 	
-	//constructeur
+	/** CONSTRUCTEURS **/
+	
 	public perso(int a, int j){		//a : personnage choisi, j = joueur (1 ou 2)
 		
-		this.A1 = new Attaque(a,true); //attaque à distance
-		this.A2 = new Attaque(a, false); //attaque au corps à corps
+		this.A1 = new Attaque(a,true); 			//attaque à distance
+		this.A2 = new Attaque(a, false); 		//attaque au corps à corps
 		
 		this.posx = 4;
 		
 		if(j == 1){
-				posy = 0; 		// centre haut du jeu
+				posy = 0; 						// centre haut du jeu
 			}else{
-				posy = 8;		// centre bas du jeu
+				posy = 8;						// centre bas du jeu
 			}
 		
 		switch(a){
@@ -50,6 +51,8 @@ public class perso{
 			break;
 		}
 	}
+	
+	/** DESCRIPTIONS **/
 	    
 	//description
 	public String toString(){
@@ -73,6 +76,8 @@ public class perso{
 	public String toStringPV(int j){
 		return "PV joueur "+j+" : "+this.pv;
 	}
+	
+	/** METHODES POUR LE DEPLACEMENT : **/
 	
 	//Déplacements 
 	public void move(perso A){
@@ -166,6 +171,8 @@ public class perso{
 	}
 
 }
+	
+	/** METHODE POUR L'ATTAQUE **/
 	
 	//Distance
 	public int distance(perso B){
