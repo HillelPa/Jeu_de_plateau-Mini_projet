@@ -3,18 +3,18 @@ import java.util.Scanner;
 public class perso{
 
 	public String nom;
-	public int pv; 					//points de vie
-	public int type; 				//retrouver chaque perso plus facilement
+	public int pv; 					// points de vie
+	public int type; 				// retrouver chaque personnage plus facilement
 	public int posx; 				// la position du joueur sur x 
 	public int posy;				// la position du joueur sur y 
-	public Attaque A1;  			// premiere attaque
-	public Attaque A2;				//deuxieme attaque
+	public Attaque A1;  				// première attaque
+	public Attaque A2;				// deuxième attaque
 	
 	//constructeur
 	public perso(int a, int j){		//a : personnage choisi, j = joueur (1 ou 2)
 		
-		this.A1 = new Attaque(a,true); //attaque a distance
-		this.A2 = new Attaque(a, false); //attaque au corps a corps
+		this.A1 = new Attaque(a,true); //attaque à distance
+		this.A2 = new Attaque(a, false); //attaque au corps à corps
 		
 		this.posx = 4;
 		
@@ -38,7 +38,7 @@ public class perso{
 			break;
 			
 			case 3 :
-			this.nom = "Canonier";
+			this.nom = "Canonnier";
 			this.pv = 100;
 			this.type = 3;
 			break;
@@ -60,12 +60,12 @@ public class perso{
 				+" Deux attaques : \n"
 				+"---\n"
 				+"Attaque 1 : " +this.A1.nom+"\n"
-				+"Degats a distances : "+this.A1.Adist+"\n"
-				+"Degats au corps a corps : "+this.A1.Acac+"\n"
+				+"Dégâts à distance : "+this.A1.Adist+"\n"
+				+"Dégâts au corps à corps : "+this.A1.Acac+"\n"
 				+"\n"
 				+"Attaque 2 : " +this.A2.nom+"\n"
-				+"Degats a distances : "+this.A2.Adist+"\n"
-				+"Degats au corps a corps : "+this.A2.Acac+"\n"
+				+"Dégâts à distance : "+this.A2.Adist+"\n"
+				+"Dégâts au corps à corps : "+this.A2.Acac+"\n"
 				+"_____________________________________________________________________\n";
 		}
 
@@ -172,7 +172,7 @@ public class perso{
 		return Math.abs(this.posx - B.posx) + Math.abs(this.posy - B.posy);
 	}
 	
-	//perte de point de vie
+	//perte de points de vie
 	public void pv(int a){
 		this.pv = this.pv - a;
 	}	
@@ -181,7 +181,7 @@ public class perso{
 	public void attaque(perso B){
 		Scanner sc = new Scanner(System.in);
 		
-		System.out.println("Quelle attaque voulez vous utiliser ?");
+		System.out.println("Quelle attaque voulez-vous utiliser ?");
 		System.out.println(this.A1.toString()+" tapez 1");
 		System.out.println(this.A2.toString()+" tapez 2");
 		int at = jeu.estPossible(1,2);
