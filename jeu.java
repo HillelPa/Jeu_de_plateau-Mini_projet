@@ -35,6 +35,9 @@ public class jeu{
 		String [][] plat = init();
 		int nbrB = -1;
 		bonus [] Bonus = new bonus [100];
+			for(int i = 0; i<Bonus.length; i++){
+				Bonus[i] = new bonus();
+			}
 		nbrB++;
 		Bonus[nbrB] = new bonus();
 		maj(plat, Perso[0], Perso[1], Bonus, nbrB);
@@ -49,9 +52,9 @@ public class jeu{
 			t++;
 			System.out.println("[Tour : "+t+"]");
 			System.out.println();
-			if(t%3 == 0){					//un nouveau bonus tous les six tours
+			if(t%5 == 0){					//un nouveau bonus tous les cinq tours
 				nbrB++;
-				Bonus[nbrB] = newbonus();
+				Bonus[nbrB] = newbonus(Bonus);
 				System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
 				maj(plat, Perso[0], Perso[1], Bonus, nbrB);
 				affichage(plat);
@@ -62,12 +65,13 @@ public class jeu{
 			timePause(2000);
 			
 			affichage(plat);
-			System.out.println("Entrez une lettre pour lancer votre dé");
+			System.out.println("Appuyer sur ENTRER pour lancer votre dé");
 			String D = sc.nextLine();
 			int d = lancerde();
 			System.out.println("Vous avez fait "+d+"\n"+"Vous pouvez vous déplacer "+d+" fois !");
 			for(int i = 0; i<d; i++){
-			
+				pause();
+			System.out.println("Déplacement numéro "+(i+1));
 			affichage(plat);
 			deplacement(plat, Perso[0], Perso[1], j);
 			surbonus(Perso[j-1], Bonus, nbrB);
@@ -107,10 +111,26 @@ public class jeu{
 	}
 						
 	//creation d'un bonus
-	public static bonus newbonus(){
+	public static bonus newbonus(bonus [] Bonus){
 		bonus B = new bonus((int)(Math.random()*4)+1);
-		return B;
+		boolean F = true;
+		for(int i = 0; i<Bonus.length; i++){
+			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
+			F = false;
+			}
+		}
+		while(F == false){
+		B = new bonus((int)(Math.random()*4)+1);
+		for(int i = 0; i<Bonus.length; i++){
+			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
+			F = false;
+			}else{
+			F = true;
+			}
+		}	
 	}
+	return B;
+}
 
 	//pause graphique
 	public static void pause(){
@@ -292,21 +312,23 @@ public class jeu{
 			}
 		for(int i = 0; i<15; i++){
 			a = (int)(Math.random()*6+1);
-		System.out.println("|¯¯¯|");
-		System.out.println("| "+a+" |");
-		System.out.println("|___|");
+		System.out.println(" /¯¯¯/|");
+		System.out.println("|¯¯¯| |");
+		System.out.println("| "+a+" | |");
+		System.out.println("|___|/");
 			for(int j = 0; j<50; j++){
 				System.out.println();
 			}
-		timePause(50);
+		timePause(100);
 	
 		}
-		System.out.println("|¯¯¯|");
-		System.out.println("| "+x+" |");
-		System.out.println("|___|");
-		
+		System.out.println(" /¯¯¯/|");
+		System.out.println("|¯¯¯| |");
+		System.out.println("| "+x+" | |");
+		System.out.println("|___|/");
+		for(int j = 0; j<30; j++){
+				System.out.println();
+			}
 	}
 		
 }
-
-
