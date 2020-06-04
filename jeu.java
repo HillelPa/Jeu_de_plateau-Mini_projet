@@ -4,16 +4,16 @@ import java.util.Scanner;
 public class jeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		afficherNom(); //affichage du nom du jeu
-		timePause(2000);
-		pause();
-		introduction(); //affichage des règles
+		afficherNom(); 								//affichage du nom du jeu
+		timePause(2000);							//pause de 2 secondes
+		pause();									//saut de ligne + "---"
+		introduction(); 							//affichage des règles
 		pause();
 
-		perso[] Perso = new perso [2]; //Tableau qui stockera les persos des joueurs 1 et 2
+		perso[] Perso = new perso [2]; 				//Tableau qui stockera les persos des joueurs 1 et 2
 		
 		System.out.println("Joueur 1, c'est à vous de choisir un personnage parmis les champions suivant :");
-		Perso[0] = choix(1);
+		Perso[0] = choix(1);						//choix du personnage par le joueur
 		pause();
 		System.out.println("Vous avez choisi "+Perso[0].nom);	
 		System.out.println();
@@ -32,27 +32,27 @@ public class jeu{
 		timePause(2000);
 		System.out.println("Voici l'arène !");
 		System.out.println();
-		String [][] plat = init();
-		int nbrB = -1;
-		bonus [] Bonus = new bonus [100];
+		String [][] plat = init();					//Création de l'échiquier
+		int nbrB = -1;								//entier qui donnera la place du dernier bonus dans le tableau de bonus
+		bonus [] Bonus = new bonus [100];			//tableau de bonus qui stockera tous les bonus qui apparaissent 
 			for(int i = 0; i<Bonus.length; i++){
-				Bonus[i] = new bonus();
+				Bonus[i] = new bonus();				//le tableau est initialement rempli de bonus inactifs
 			}
 		nbrB++;
 		Bonus[nbrB] = new bonus();
-		maj(plat, Perso[0], Perso[1], Bonus, nbrB);
-		affichage(plat);
+		maj(plat, Perso[0], Perso[1], Bonus, nbrB);	//une mise a jour qui prend en compte les nouveaux bonus et les joueurs
+		affichage(plat);							//affichage de l'échiquier 
 		timePause(5000);
 		
 		//jeu :
-		int j = 1; 								//joueur 
-		boolean F = fini(Perso[0], Perso[1]); 	//jeu fini ?	
-		int t = 0; 								// nombre de tour
+		int j = 1; 								 
+		boolean F = fini(Perso[0], Perso[1]); 		//jeu est-il fini ?	
+		int t = 0; 									// nombre de tour
 		while(F == false){
 			t++;
 			System.out.println("[Tour : "+t+"]");
 			System.out.println();
-			if(t%5 == 0){					//un nouveau bonus tous les cinq tours
+			if(t%5 == 0){							//un nouveau bonus tous les 5 tours
 				nbrB++;
 				Bonus[nbrB] = newbonus(Bonus);
 				System.out.println("Un bonus vient d'apparaitre en ("+Bonus[nbrB].posx+" ; "+Bonus[nbrB].posy+") !"+Bonus[nbrB].description);
@@ -61,15 +61,12 @@ public class jeu{
 			}
 			
 			System.out.println("Joueur "+j+", à vous de jouer !");
-			// Pause pour ne pas avoir un défilement d'informations trop rapide
-			timePause(2000);
-			// Récapitulatif des points de vie des joueurs entre chaque tour
-			affichagePV(Perso);
-			// Affichage du plateau de jeu
-			affichage(plat);
+			timePause(2000);						
+			affichagePV(Perso);						// Récapitulatif des points de vie des joueurs entre chaque tour
+			affichage(plat);						
 			System.out.println("Appuyer sur ENTRER pour lancer votre dé");
-			String D = sc.nextLine();
-			int d = lancerde();
+			String D = sc.nextLine();				//pause le temps d'appuyer sur entré
+			int d = lancerde();						//lancer de dé qui determine combien de fois on se déplace
 			System.out.println("Vous avez fait "+d+"\n"+"Vous pouvez vous déplacer "+d+" fois !");
 			for(int i = 0; i<d; i++){
 				pause();
@@ -77,123 +74,31 @@ public class jeu{
 			System.out.println();
 			affichagePV(Perso);
 			affichage(plat);
-			deplacement(plat, Perso[0], Perso[1], j);
-			surbonus(Perso[j-1], Bonus, nbrB);
+			deplacement(plat, Perso[0], Perso[1], j); 	//déplacements du joueur
+			surbonus(Perso[j-1], Bonus, nbrB);			//Le joueur est-il sur un bonus ? si oui, il le prend
 			maj(plat, Perso[0], Perso[1], Bonus, nbrB);
 			affichagePV(Perso);
 			affichage(plat);
 			timePause(2000);
 			}
 			
-			attaque(Perso[j-1], Perso[j%2], (j%2 +1));
+			Perso[j-1].attaque(Perso[j%2]);				//attaque du joueur
 			affichagePV(Perso);
 			affichage(plat);
 			timePause(2000);
 			
-			j = j%2 +1; //changement joueur 1<->2
+			j = j%2 +1; 								//changement joueur 1<->2
 			pause();
 			F = fini(Perso[0], Perso[1]);
 		}
 		
-		j = j%2 +1;				
-		//FIN DU JEU
-		System.out.println("La partie est finie !");
-		System.out.println("Bravo au joueur "+j+", vous avez gagné !");
+		j = j%2 +1;														
+		endgame(j, t);									//affichage du message de fin
 	}
-		
 	
-	//Le joueur vient-il de prendre un bonus ?
-	public static void surbonus(perso Perso, bonus [] B, int nbrB){
-		for(int i = 0; i<nbrB +1; i++){
-			if(Perso.posx == B[i].posx && Perso.posy == B[i].posy && !B[i].name.equals(" ")){
-				System.out.println("Vous prenez le "+B[i].toString());
-				Perso.A1.Acac = Perso.A1.Acac + B[i].bonusAttaque;
-				Perso.A2.Adist = Perso.A2.Adist + B[i].bonusAttaque;
-				Perso.pv = Perso.pv + B[i].bonusVie;
-				B[i] = new bonus();
-				break;
-			}
-		}
-	}
-						
-	//création d'un bonus
-	public static bonus newbonus(bonus [] Bonus){
-		bonus B = new bonus((int)(Math.random()*4)+1);
-		boolean F = true;
-		for(int i = 0; i<Bonus.length; i++){
-			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
-			F = false;
-			}
-		}
-		while(F == false){
-		B = new bonus((int)(Math.random()*4)+1);
-		for(int i = 0; i<Bonus.length; i++){
-			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
-			F = false;
-			}else{
-			F = true;
-			}
-		}	
-	}
-	return B;
-}
-
-	//pause graphique
-	public static void pause(){
-		System.out.println();
-		System.out.println("---");
-		System.out.println();
-	}
-		
-	//déplacement
-	public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
-		switch (j){
-			case 1 :
-			Perso1.move(Perso2);
-			break;
-			
-			case 2 :
-			Perso2.move(Perso1);
-			break;
-		}
-	}
-		
-	//création du plateau
-	public static String [][] init(){
-		String [][] plateau = new String [9][9];
-		for(int i = 0; i<plateau.length; i++){
-			for(int j = 0; j<plateau[i].length; j++){
-					plateau[i][j] = " ";
-			}
-		}
-		return plateau;
-	}
-		
-	//affichage du jeu
-	public static void affichage(String [][] jeu){
-		for(int i = 0; i<jeu.length; i++){
-			for(int j = 0; j<jeu[i].length; j++){
-				System.out.print("["+jeu[i][j]+"]");
-			}System.out.println();
-		}
-		pause();
-	}
-		
-	//mise à jour du plateau
-	public static void maj(String [][] plateau, perso Perso1, perso Perso2, bonus [] B, int nbrbonus){
-		for(int i = 0; i<plateau.length; i++){
-				for(int j = 0; j<plateau[i].length; j++){
-					plateau[i][j] = " ";
-				}
-			}
-		plateau[Perso1.posy][Perso1.posx] = "O";
-		plateau[Perso2.posy][Perso2.posx] = "X";
-		for(int i = 0; i<nbrbonus+1; i++){
-			if(!B[i].name.equals(" ")){  
-				plateau[B[i].posy][B[i].posx] = B[i].abrev;
-			}
-		}
-	}
+	
+	/** methodes structure du jeu : **/
+	
 	
 	//choix du personnage	
 	public static perso choix(int j){ // j : joueur 
@@ -218,53 +123,85 @@ public class jeu{
 		}
 		return P;
 	}
-		
-	//attaque
-	public static void attaque(perso P1, perso P2, int j){
-		P1.attaque(P2);
-		System.out.println("---");
-		System.out.println();
-		System.out.println(P2.toStringPV(j));
+	
+	//création du plateau
+	public static String [][] init(){
+		String [][] plateau = new String [9][9];
+		for(int i = 0; i<plateau.length; i++){
+			for(int j = 0; j<plateau[i].length; j++){
+					plateau[i][j] = " ";
+			}
+		}
+		return plateau;
 	}
-		
-	//pause 
-	public static void timePause (int ms) {
-		try {
-		Thread.sleep(ms);
-		}catch(InterruptedException e){}
+	
+	//création d'un bonus
+	public static bonus newbonus(bonus [] Bonus){
+		bonus B = new bonus((int)(Math.random()*4)+1);
+		boolean F = true;
+		for(int i = 0; i<Bonus.length; i++){
+			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
+			F = false;
+			}
+		}
+		while(F == false){
+		B = new bonus((int)(Math.random()*4)+1);
+		for(int i = 0; i<Bonus.length; i++){
+			if(B.posx == Bonus[i].posx && B.posy == Bonus[i].posy && Bonus[i].bonusAttaque != 0 && Bonus[i].bonusVie != 0){
+			F = false;
+			}else{
+			F = true;
+			}
+		}	
 	}
-		
-	//fini ?
-	public static boolean fini(perso P1, perso P2){
-		if(P1.pv <1 || P2.pv<1){
-			return true;
-		}else{
-			return false;
+	return B;
+}
+
+	//mise à jour du plateau
+	public static void maj(String [][] plateau, perso Perso1, perso Perso2, bonus [] B, int nbrbonus){
+		for(int i = 0; i<plateau.length; i++){
+				for(int j = 0; j<plateau[i].length; j++){
+					plateau[i][j] = " ";
+				}
+			}
+		plateau[Perso1.posy][Perso1.posx] = "O";
+		plateau[Perso2.posy][Perso2.posx] = "X";
+		for(int i = 0; i<nbrbonus+1; i++){
+			if(!B[i].name.equals(" ")){  
+				plateau[B[i].posy][B[i].posx] = B[i].abrev;
+			}
+		}
+	}
+	
+	//lancer de dé
+	public static int lancerde(){
+		int x = (int)(Math.random()*6+1);
+		affichagelancer(x);
+		return x;
+	}
+	
+	//déplacement
+	public static void deplacement(String [][] plat, perso Perso1, perso Perso2, int j){ //j : joueur
+		switch (j){
+			case 1 :
+			Perso1.move(Perso2);
+			break;
+			
+			case 2 :
+			Perso2.move(Perso1);
+			break;
 		}
 	}
 			
-	//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
-	public static int estPossible (int a, int b) {
-		Scanner sc = new Scanner(System.in);
-		int numeroPerso=-1;
-		boolean B=false;
-		while(!B) {
-			while(numeroPerso > b || numeroPerso < a){
-				System.out.println("(Entre "+a+" et "+b+"!)");
-				try {
-					numeroPerso = sc.nextInt();
-					B=true;
-				}catch(InputMismatchException e) {
-					System.out.print("Un chiffre s'il te plait") ;
-					sc.next();
-					B=false;
-				}
-				
-			}
-		}
-		return numeroPerso;
+	//attaque
+	public static void attaque(perso P1, perso P2, int j){
+		P1.attaque(P2);
 	}
-
+	
+	
+	/** methodes graphiques : **/
+	
+	
 	//nom du jeu
 	public static void afficherNom(){
 		System.out.println("  ___      ___                            ___________");
@@ -295,13 +232,30 @@ public class jeu{
 		System.out.println("C'est parti !");
 	}
 	
-	//lancer de dé
-	public static int lancerde(){
-		int x = (int)(Math.random()*6+1);
-		affichagelancer(x);
-		return x;
+	//affichage du jeu
+	public static void affichage(String [][] jeu){
+		for(int i = 0; i<jeu.length; i++){
+			for(int j = 0; j<jeu[i].length; j++){
+				System.out.print("["+jeu[i][j]+"]");
+			}System.out.println();
+		}
+		pause();
+	}
+		
+	//pause graphique
+	public static void pause(){
+		System.out.println();
+		System.out.println("---");
+		System.out.println();
 	}
 	
+	//pause temporelle
+	public static void timePause (int ms) {
+		try {
+		Thread.sleep(ms);
+		}catch(InterruptedException e){}
+	}
+		
 	//affichage du dé
 	public static void affichagelancer(int x){
 	
@@ -335,4 +289,69 @@ public class jeu{
 		System.out.println("J1 : "+Perso[0].pv+" pv");
 		System.out.println("J2 : "+Perso[1].pv+" pv");
 	}
+
+	//affichage fin du jeu
+	public static void endgame(int j, int t){		// j = joueur, t = tours
+		System.out.println("___________________________________________");
+		System.out.println("|           LA PARTIE EST FINIE           |");
+		System.out.println("¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯¯");
+		System.out.println();
+		System.out.println("BRAVO AU JOUEUR "+j);
+		System.out.println("Vous avez gagné en "+t+" tours !");
+		System.out.println("___________________________________________");
+	}
+	
+	
+	/** methodes d'états : **/
+	
+		
+	//Le joueur vient-il de prendre un bonus ?
+	public static void surbonus(perso Perso, bonus [] B, int nbrB){
+		for(int i = 0; i<nbrB +1; i++){
+			if(Perso.posx == B[i].posx && Perso.posy == B[i].posy && !B[i].name.equals(" ")){
+				System.out.println("Vous prenez le "+B[i].toString());
+				Perso.A1.Acac = Perso.A1.Acac + B[i].bonusAttaque;
+				Perso.A2.Adist = Perso.A2.Adist + B[i].bonusAttaque;
+				Perso.pv = Perso.pv + B[i].bonusVie;
+				B[i] = new bonus();
+				break;
+			}
+		}
+	}
+		
+	//fini ?
+	public static boolean fini(perso P1, perso P2){
+		if(P1.pv <1 || P2.pv<1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+	
+	
+	/** methode qui permet le bon fonctionnement : **/	
+	
+		
+	//faire en sorte qu'a chaque scanner, le jeu ne crash pas si on rentre une mauvaise valeur
+	public static int estPossible (int a, int b) {
+		Scanner sc = new Scanner(System.in);
+		int numeroPerso=-1;
+		boolean B=false;
+		while(!B) {
+			while(numeroPerso > b || numeroPerso < a){
+				System.out.println("(Entre "+a+" et "+b+"!)");
+				try {
+					numeroPerso = sc.nextInt();
+					B=true;
+				}catch(InputMismatchException e) {
+					System.out.print("Un chiffre s'il te plait") ;
+					sc.next();
+					B=false;
+				}
+				
+			}
+		}
+		return numeroPerso;
+	}
+
 }
