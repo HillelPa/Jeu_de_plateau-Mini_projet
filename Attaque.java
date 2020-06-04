@@ -4,8 +4,9 @@ public class Attaque{
 	public int Adist; 				//points d'attaque à distance
 	public int Acac; 				//points d'attaque au corps à corps
 	
-	//constructeurs 
-	public Attaque(int a, boolean d){ // a = type de heros, d : TRUE = distance; FALSE = corps a corps
+	/** CONSTRUCTEUR **/
+	 
+	public Attaque(int a, boolean d){ 	// a = type de heros, d : TRUE = distance; FALSE = corps a corps
 		switch(a){
 		case 1:
 			if(d == true){
@@ -54,7 +55,8 @@ public class Attaque{
 		} 
 	}
 	
-	//description
+	/** DESCRIPTION **/
+	
 	public String toString(){
 		return this.nom;
 	}
