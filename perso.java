@@ -7,7 +7,7 @@ public class perso{
 	public int type; 				// retrouver chaque personnage plus facilement
 	public int posx; 				// la position du joueur sur x 
 	public int posy;				// la position du joueur sur y 
-	public Attaque A1;  				// première attaque (celle a utiliser à distance)
+	public Attaque A1;  			// première attaque (celle a utiliser à distance)
 	public Attaque A2;				// deuxième attaque	(celle a utiliser au corps à corps)
 	
 	/** CONSTRUCTEURS **/
@@ -164,7 +164,7 @@ public class perso{
 	
 	//le mouvement est-il valide ?
 	public boolean possible(perso A, String mouv){
-			if( (!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("d") && !mouv.equals("s")) || (this.posy == 0 && mouv.equals("z")) || (this.posy == 8 && mouv.equals("s")) || (this.posx == 0 && mouv.equals("q")) || (this.posx == 0 && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx - 1) && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx + 1) && mouv.equals("q")) || ((this.posx == A.posx && this.posy == (A.posy+1) && mouv.equals("z")) || (this.posx == A.posx && this.posy == (A.posy - 1) && mouv.equals("s"))) ){
+			if( (!mouv.equals("z") && !mouv.equals("q") && !mouv.equals("d") && !mouv.equals("s")) || (this.posy == 0 && mouv.equals("z")) || (this.posy == 8 && mouv.equals("s")) || (this.posx == 0 && mouv.equals("q")) || (this.posx == 8 && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx - 1) && mouv.equals("d")) || (this.posy == A.posy && this.posx == (A.posx + 1) && mouv.equals("q")) || ((this.posx == A.posx && this.posy == (A.posy+1) && mouv.equals("z")) || (this.posx == A.posx && this.posy == (A.posy - 1) && mouv.equals("s"))) ){
 				return false;
 			}else{
 				return true;
