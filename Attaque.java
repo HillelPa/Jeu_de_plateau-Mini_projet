@@ -1,8 +1,8 @@
 public class Attaque{
 
 	public String nom;				//nom de l'attaque 
-	public int Adist; 				//points d'attaque a distance
-	public int Acac; 				//points d'attaque au corps a corps
+	public int Adist; 				//points d'attaque à distance
+	public int Acac; 				//points d'attaque au corps à corps
 	
 	//constructeurs 
 	public Attaque(int a, boolean d){ // a = type de heros, d : TRUE = distance; FALSE = corps a corps
