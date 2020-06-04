@@ -97,7 +97,7 @@ public class jeu{
 	}
 	
 	
-	/** methodes structures du jeu : **/
+	/** methodes structure du jeu : **/
 	
 	
 	//choix du personnage	
