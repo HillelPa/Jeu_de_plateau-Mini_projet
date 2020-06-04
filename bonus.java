@@ -1,14 +1,17 @@
 public class bonus{
 
-public String name;
-public String abrev;
-public String description;
-public int posx;
-public int posy;
-public int bonusAttaque;
-public int bonusVie;
+public String name;						//nom du bonus
+public String abrev;					//abreviation qui sera affichée sur le plateau
+public String description;				//description des pv que le bonus donne ou des points d'attaques en plus
+public int posx;						//position sur l'axe des x
+public int posy;						//position sur l'axe des y
+public int bonusAttaque;				//points d'attaque en plus grace au bonus
+public int bonusVie;					//points de vie en plus grace au bonus
 
-public bonus(int a){ //a : type de bonus 
+
+/** CONSTRUCTEUR **/ 
+
+public bonus(int a){ 					//a : type de bonus 
 	switch(a){
 		case 1:
 		this.name = "Potion de vie";
@@ -51,6 +54,7 @@ public bonus(int a){ //a : type de bonus
 }
 
 //Bonus qui n'a pas d'effet, permet de remplacer un bonus qui est pris
+
 public bonus(){ 	
 	this.name = " ";
 		this.abrev = " ";
@@ -59,6 +63,8 @@ public bonus(){
 		this.bonusAttaque = 0;
 		this.bonusVie = 0;
 }
+
+/** DESCRIPTION **/
 
 public String toString(){
 	return "bonus : "+this.name+this.description;
