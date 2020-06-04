@@ -1,7 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
-public class jeu{
+public class testjeu{
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
 		afficherNom(); 								//affichage du nom du jeu
@@ -19,6 +19,7 @@ public class jeu{
 		System.out.println();
 		System.out.println("Vous êtes le [O]");
 		pause();
+		effaceEcran();
 		
 		System.out.println("Joueur 2, c'est à vous de choisir un personnage parmis les champions suivant :");
 		Perso[1] = choix(2);
@@ -29,7 +30,7 @@ public class jeu{
 		pause();
 		
 		//affichage du jeu initial
-		timePause(2000);
+		effaceEcran();
 		System.out.println("Voici l'arène !");
 		System.out.println();
 		String [][] plat = init();					//Création de l'échiquier
@@ -42,7 +43,8 @@ public class jeu{
 		Bonus[nbrB] = new bonus();
 		maj(plat, Perso[0], Perso[1], Bonus, nbrB);	//une mise a jour qui prend en compte les nouveaux bonus et les joueurs
 		affichage(plat);							//affichage de l'échiquier 
-		timePause(5000);
+		timePause(3000);
+		effaceEcran();
 		
 		//jeu :
 		int j = 1; 								 
@@ -50,6 +52,7 @@ public class jeu{
 		int t = 0; 									// nombre de tour
 		while(F == false){
 			t++;
+			effaceEcran();
 			System.out.println("[Tour : "+t+"]");
 			System.out.println();
 			if(t%5 == 0){							//un nouveau bonus tous les 5 tours
@@ -60,29 +63,37 @@ public class jeu{
 				pause();
 			}
 			
-			System.out.println("Joueur "+j+", à vous de jouer !");
-			timePause(2000);						
+			System.out.println("Joueur "+j+", à vous de jouer !");						
 			affichagePV(Perso);						// Récapitulatif des points de vie des joueurs entre chaque tour
 			affichage(plat);						
 			System.out.println("Appuyer sur ENTRER pour lancer votre dé");
 			String D = sc.nextLine();				//pause le temps d'appuyer sur entré
 			int d = lancerde();						//lancer de dé qui determine combien de fois on se déplace
+			timePause(500);
 			System.out.println("Vous avez fait "+d+"\n"+"Vous pouvez vous déplacer "+d+" fois !");
 			for(int i = 0; i<d; i++){
 				pause();
 			System.out.println("[Déplacement numéro "+(i+1)+"]");
-			System.out.println();
 			affichagePV(Perso);
 			affichage(plat);
 			deplacement(plat, Perso[0], Perso[1], j); 	//déplacements du joueur
 			surbonus(Perso[j-1], Bonus, nbrB);			//Le joueur est-il sur un bonus ? si oui, il le prend
 			maj(plat, Perso[0], Perso[1], Bonus, nbrB);
-			affichagePV(Perso);
+			effaceEcran();
+				for(int k = 0; k<6; k++){ 				//Saut de 6 lignes
+					System.out.println();
+				}
 			affichage(plat);
-			timePause(2000);
+			timePause(500);
+			effaceEcran();
 			}
 			
-			Perso[j-1].attaque(Perso[j%2]);				//attaque du joueur
+			affichagePV(Perso);
+			affichage(plat);
+			int degats = Perso[j-1].attaque(Perso[j%2]);			//attaque du joueur et enregistrement du nombre de dégats
+			effaceEcran();
+			System.out.println("Vous avez infligé "+degats+" points de dégats");
+			timePause(500);
 			affichagePV(Perso);
 			affichage(plat);
 			timePause(2000);
@@ -92,7 +103,8 @@ public class jeu{
 			F = fini(Perso[0], Perso[1]);
 		}
 		
-		j = j%2 +1;														
+		j = j%2 +1;	
+		effaceEcran();													
 		endgame(j, t);									//affichage du message de fin
 	}
 	
@@ -260,16 +272,14 @@ public class jeu{
 	public static void affichagelancer(int x){
 	
 		int a = 0;
-		for(int j = 0; j<20; j++){
-				System.out.println();
-			}
-		for(int i = 0; i<15; i++){
+		effaceEcran();
+		for(int i = 0; i<20; i++){
 			a = (int)(Math.random()*6+1);
 		System.out.println(" /¯¯¯/|");
 		System.out.println("|¯¯¯| |");
 		System.out.println("| "+a+" | |");
 		System.out.println("|___|/");
-		timePause(100);
+		timePause(70);
 		effaceEcran();
 	
 		}
@@ -302,6 +312,10 @@ public class jeu{
 		System.out.print(ESC+"2J");
 		System.out.print(ESC+"0;0H");
 		System.out.flush();
+		
+		for(int i = 0; i<5; i++){
+			System.out.println();
+		}
 	}
 
 	
