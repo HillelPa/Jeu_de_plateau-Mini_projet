@@ -7,7 +7,7 @@ public class perso{
 	public int type; 				// retrouver chaque personnage plus facilement
 	public int posx; 				// la position du joueur sur x 
 	public int posy;				// la position du joueur sur y 
-	public Attaque A1;  			// première attaque (celle a utiliser à distance)
+	public Attaque A1;  				// première attaque (celle a utiliser à distance)
 	public Attaque A2;				// deuxième attaque	(celle a utiliser au corps à corps)
 	
 	/** CONSTRUCTEURS **/
@@ -185,7 +185,7 @@ public class perso{
 	}	
 	 
 	//attaque
-	public void attaque(perso B){
+	public int attaque(perso B){
 		Scanner sc = new Scanner(System.in);
 		
 		System.out.println("Quelle attaque voulez-vous utiliser ?");
@@ -193,28 +193,25 @@ public class perso{
 		System.out.println(this.A2.toString()+" tapez 2");
 		int at = jeu.estPossible(1,2);
 		int d = this.distance(B);
-		System.out.println("---");
-		System.out.println();
-		System.out.print("Vous avez infligé ");
 		switch (at){
 			case 1 : 
 			if(d > 3){
 				B.pv(this.A1.Adist);
-					System.out.print(this.A1.Adist);
+					return this.A1.Adist;
 			}else{
 				B.pv(this.A1.Acac);
-					System.out.print(this.A1.Acac);
+					return this.A1.Acac;
 			}
-			break;
-				case 2 : 
-				if(d > 3){
+			
+			case 2 : 
+			if(d > 3){
 				B.pv(this.A2.Adist);
-					System.out.print(this.A2.Adist);
+					return this.A2.Adist;
 			}else{
 				B.pv(this.A2.Acac);
-				System.out.print(this.A2.Acac);
+					return this.A2.Acac;
 			}
 		}
-	System.out.println(" dégats");
+	return 0;
 	}
 }
